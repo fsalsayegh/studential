@@ -34,7 +34,6 @@ class MyFooter extends React.Component {
                     </View>
                   </Link>
                 </Button>
-
             </FooterTab>
           </Footer>
         </Container>

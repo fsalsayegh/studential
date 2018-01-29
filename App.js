@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import MyForm from './Components/MyForm.js';
 import { Container,Content,Header,Footer } from 'native-base';
-import MyFooter from './Components/MyFooter.js';
 import MyHeader from './Components/MyHeader.js';
 import { observer } from "mobx-react";
 import auth from './auth';
@@ -14,7 +13,6 @@ export default observer(class App extends React.Component {
 
       <Container>
         <MyHeader />
-        <MyFooter />
       </Container>
     );
   }
