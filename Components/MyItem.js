@@ -4,33 +4,9 @@ import { Drawer,Card,CardItem,Input,Form,List,Body,ListItem,Thumbnail,Container,
 //import Icon from 'react-native-vector-icons/FontAwesome';
 import MyComment from './Comment.js';
 import {Link} from 'react-router-native'
+
+
 class MyItem extends React.Component {
- // constructor(){
- //   super();
- //   this.state ={
- //     name_user: "",
- //     mess: [],
- //     dataSource: new ListView.DataSource({
- //       rowHasChanged:(row1, row2) => row1 !==row2
- //     }),
- //    }
- // }
-
- // submit(){
- //   <Path exact path="/z" component={MyComment} />
- // }
- // submit(){
- //   let x = this.state.mess;
- //   x.push(this.state.name_user)
- //   this.setState({mess: x,name_user: "",dataSource: this.state.dataSource.cloneWithRows(x)})
- // }
-
- // renderItem(x){
- //  return(
- //      <Text note>{x}</Text>
- //  )
- // }
-
 
  render() {
    return (
@@ -58,7 +34,6 @@ class MyItem extends React.Component {
             <Button transparent>
               <Link to="/z">
                 <Icon active name="chatbubbles" />
-
               </Link>
               <Text>comments</Text>
             </Button>
@@ -70,11 +45,43 @@ class MyItem extends React.Component {
      </CardItem>
    </Card>
 
+
    );
  }
 }
 
 export default MyItem;
+
+
+
+
+// constructor(){
+//   super();
+//   this.state ={
+//     name_user: "",
+//     mess: [],
+//     dataSource: new ListView.DataSource({
+//       rowHasChanged:(row1, row2) => row1 !==row2
+//     }),
+//    }
+// }
+
+// submit(){
+//   <Path exact path="/z" component={MyComment} />
+// }
+// submit(){
+//   let x = this.state.mess;
+//   x.push(this.state.name_user)
+//   this.setState({mess: x,name_user: "",dataSource: this.state.dataSource.cloneWithRows(x)})
+// }
+
+// renderItem(x){
+//  return(
+//      <Text note>{x}</Text>
+//  )
+// }
+
+//------------------------------------------------------------------------------------
 
 // {/* <ListItem>
 //   <Body>

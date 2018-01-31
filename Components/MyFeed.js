@@ -1,57 +1,44 @@
 import React from 'react';
 import { StyleSheet, Text, View ,ListView, Image} from 'react-native';
 import { Input,Form,List,Body,ListItem,Thumbnail,Container,Content,Header,Footer,HeaderTab,Left,Right,Button,Icon } from 'native-base';
-// import Icon from 'react-native-vector-icons/FontAwesome';
 import MyItem from './MyItem';
+import { observer } from "mobx-react";
+import store from '../Store';
 
-class MyFeed extends React.Component {
- constructor(){
-   super();
-   this.state ={
-     dataSource: new ListView.DataSource({
-       rowHasChanged:(row1, row2) => row1 !==row2
-     }),
-     mess:[],
+const MyFeed = observer(class MyFeed extends React.Component {
+ // constructor(){
+ //   super();
+ //   this.state ={
+ //     dataSource: new ListView.DataSource({
+ //       rowHasChanged:(row1, row2) => row1 !==row2
+ //     }),
+ //   }
+ // }
 
-   }
- }
  componentWillMount(){
+   store.mainpage = true
+   store.headright = true
    fetch('https://jsonplaceholder.typicode.com/users').then(
      (x) => x.json()
    ).then(
-     (y) => {this.setState({dataSource: this.state.dataSource.cloneWithRows(y)}); console.log(y)}
-   )
- }
-// renderItem(x){
-//  return(
-//    <ListItem avatar>
-//        <Body>
-//          <Text>{x.username}</Text>
-//          <Text note>{x.email}</Text>
-//          <Form>
-//            <Input placeholder="nickname" onChangeText={(nickname) => this.setState({name_user: nickname})}/>
-//            <Button transparent onPress={this.submit.bind(this)}>
-//              <Icon name="chatboxes"/>
-//            </Button>
-//          </Form>
-//        </Body>
-//        <Right>
-//          <Text note>{x.name}</Text>
-//        </Right>
-//      </ListItem>
-//  )
-// }
+     (y) => {
+       store.dataSource = store.dataSource.cloneWithRows(y)
+
+   })
+}
 
 
  render() {
    return (
     <View>
-       <ListView dataSource={this.state.dataSource} renderRow={(item) => <MyItem item={item}/>} />
+       <ListView dataSource={store.dataSource} renderRow={(item) => <MyItem item={item}/>} />
   </View>
    );
  }
-}
+});
 export default MyFeed;
+
+
 // {/* <ListItem avatar>
 //   <Left>
 //     <Thumbnail Circular size={80} source={{ uri: ’https://pbs.twimg.com/media/DT3zAZFW4AEwueG.jpg' }} />

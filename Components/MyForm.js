@@ -3,16 +3,16 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 import { Form, Input,Item,Button , Left,Label,Icon,Header,Right,Grid,Col,Tabs,Tab } from 'native-base';
 import MyLogin from './Tab_Login.js';
 import MySignup from './Tab_Signup.js';
+import store from '../Store';
+import { observer } from "mobx-react";
 
- class MyForm extends React.Component {
+ const MyForm= observer(class MyForm extends React.Component {
 
+   componentWillMount(){
+     store.mainpage = false
+     store.headright = false
+   }
 
-//else {auth.login(this.state.username,this.state.password)}
-
-// {/* <View>
-// <Image source={{uri: 'https://i.pinimg.com/736x/ff/87/e2/ff87e203183f06807353568b23080139--wallpapers-iphone--abstract-wallpaper.jpg, https://i.pinimg.com/736x/ff/87/e2/ff87e203183f06807353568b23080139--wallpapers-iphone--abstract-wallpaper.jpg'}}
-// style={{width: 40, height: 40}} />
-// </View> */}
   render() {
 
     return (
@@ -39,7 +39,7 @@ import MySignup from './Tab_Signup.js';
       </Form>
     );
   }
-}
+})
 export default MyForm;
 //alignSelf: 'center'
 
