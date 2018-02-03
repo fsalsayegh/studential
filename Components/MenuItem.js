@@ -23,10 +23,10 @@ class SideBar extends React.Component {
 
 
           <Button transparent >
-            <Text>profile</Text>
+            <Link to="/profile" onPress={this.props.closeDrawer()} component={Text}>
+              profile
+            </Link>
           </Button>
-        
-
 
         <Text>
           {" "}

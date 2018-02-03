@@ -1,9 +1,10 @@
 import React from 'react';
 import { ListView,StyleSheet, Text, View } from 'react-native';
 import { Right,Input,Container,Content,Header,Footer,HeaderTab,Left,Button,Icon } from 'native-base';
+import store from '../Store.js'
+import { observer } from "mobx-react";
 
-
-class MyComment extends React.Component {
+const MyComment = observer(class MyComment extends React.Component {
   constructor(){
     super();
     this.state ={
@@ -27,6 +28,13 @@ class MyComment extends React.Component {
    )
   }
 
+  componentWillMount(){
+    store.header = 'Comment'
+    store.mainpage = false
+    store.headright = false
+  }
+
+
   render() {
     return (
           <View>
@@ -40,6 +48,6 @@ class MyComment extends React.Component {
           </View>
     );
   }
-}
+});
 
 export default MyComment;

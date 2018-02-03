@@ -14,10 +14,8 @@ class myStore {
       }),
       name_icon:'',
       mainpage: false,
-      headright: false
-
-
-
+      headright: false,
+      header:''
     })
   }
 }

@@ -18,6 +18,7 @@ const MyFeed = observer(class MyFeed extends React.Component {
  componentWillMount(){
    store.mainpage = true
    store.headright = true
+   store.header = ""
    fetch('https://jsonplaceholder.typicode.com/users').then(
      (x) => x.json()
    ).then(

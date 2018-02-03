@@ -4,6 +4,8 @@ import { Form, Input,Item,Button,Label,Icon,Grid,Tabs,Tab } from 'native-base';
 import { observer } from "mobx-react";
 import auth from '../auth';
 import store from '../Store';
+import { Dropdown } from 'react-native-material-dropdown';
+import SelectMultiple from 'react-native-select-multiple'
 
 const MySignup = observer(class MySignup extends React.Component {
   constructor() {
@@ -15,8 +17,20 @@ const MySignup = observer(class MySignup extends React.Component {
            inputSuccess2:'',
            name_user: 'close-circle',
            name_pass:'close-circle',
-           email:''
+           email:'',
+           major:[
+             { label: "Computer Engineering", value: "Computer Engineering"},
+             { label: "Electrical Engneering", value: "Electrical Engineering"},
+             { label: "Mechanical Engineering", value: "Mechanical Engineering"},
 
+           ],
+           course:[
+             { value:"Operating System"},
+             { value: "Nano"},
+             { value: "physics"},
+
+           ],
+           selectedFruits: [],
          };
     }
 
@@ -60,10 +74,16 @@ const MySignup = observer(class MySignup extends React.Component {
       }else if (username.length === ""){
         alert("The username is empty")
       }else{
-        auth.signup(username,password,email)
+        auth.signup(username,password,email,major,course)
       }
     }
 
+    //when the user selects or de-selects an item
+    onSelectionsChange(selectedFruits){
+    //selectedFruits is array of { label, value }
+    this.setState({selectedFruits})
+    console.log(selectedFruits)
+  }
 
 
   render() {
@@ -76,6 +96,9 @@ const MySignup = observer(class MySignup extends React.Component {
             <Icon name={this.state.name_user}/>
           </Item>
         </View>
+        <Text>
+          {" "}
+        </Text>
 
         <View className='Email-input'>
         <Label stackedLabel style={{fontSize: 15, fontWeight: 'bold', marginLeft: 20, marginRight: 20}}>Email</Label>
@@ -94,25 +117,29 @@ const MySignup = observer(class MySignup extends React.Component {
             <Input secureTextEntry style={{fontSize: 12}} placeholder="Please enter your password" onChangeText={this.changeMePass.bind(this)} />
             <Icon name={this.state.name_pass}/>
           </Item>
-          <Button color='#ff5c5c' style={{marginTop: 20, marginLeft: 20, marginRight: 20}} borderd block onPress={this.alert_signup.bind(this)}>
-            <Text style={{color: "white" ,fontFamily: 'Verdana'}}>Signup</Text>
-          </Button>
         </View>
 
-    </View>
+          <Text>
+            {" "}
+          </Text>
 
+        <View className='major-input' style={{marginLeft: 20, marginRight: 20}}>
+          <Label style={{fontSize: 15,fontWeight: "bold"}} stackedLabel> Major</Label>
+            <Dropdown  label='Major' data={this.state.major}/>
+        </View>
+
+        <View className='Course-input' style={{marginLeft: 20, marginRight: 20}}>
+          <Label style={{fontSize: 15,fontWeight: "bold"}}> Course</Label>
+          <SelectMultiple items={this.state.major} selectedItems={this.state.selectedFruits} onSelectionsChange={this.onSelectionsChange.bind(this)} />
+        </View>
+
+        <View className='Signup-button'>
+        <Button color='#ff5c5c' style={{marginTop: 20, marginLeft: 20, marginRight: 20}} borderd block onPress={this.alert_signup.bind(this)}>
+          <Text style={{color: "white" ,fontFamily: 'Verdana'}}>Signup</Text>
+        </Button>
+      </View>
+    </View>
     );
   }
 });
-
 export default MySignup;
-
-
-
-
-// {/* <View className='Email-input'>
-//   <Label stackedLabel style={{fontSize: 15, fontWeight: "bold", marginLeft: 20, marginRight: 20}}>Email</Label>
-//   <Item  regular style={{marginLeft: 20, marginRight: 20}}>
-//     <Input  style={{fontSize: 12}}  placeholder="Please enter your email" />
-//   </Item>
-// </View> */}

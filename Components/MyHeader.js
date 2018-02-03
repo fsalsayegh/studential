@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text } from 'react-native';
 import {View,Body,Input,Item,Right,Container,Content,Header,Footer,HeaderTab,Left,Button,Icon,Drawer } from 'native-base';
-import {Link} from 'react-router-native'
+import {Link,NativeRouter} from 'react-router-native'
 import SideBar from './MenuItem';
 import MyFooter from './MyFooter.js';
 import store from '../Store';
@@ -25,25 +25,12 @@ const MyHeader= observer(class MyHeader extends React.Component {
 
   }
 
-      closeDrawer(){
-      this.drawer._root.close()
-    };
-
-    openDrawer(){
-          this.drawer._root.open()
-          console.log("hhh")
-        };
-
 
   render() {
     return (
-      <Drawer
-        ref={(ref) => { this.drawer = ref; }}
-        content={(<SideBar navigator={this.navigator} />)}
-        onClose={() => this.closeDrawer()}>
           <Header searchBar rounded>
             <Left>
-              <Button transparent onPress={() => this.openDrawer()}>
+              <Button transparent onPress={() => this.props.openDrawer()}>
                 <Icon name= 'menu' />
               </Button>
             </Left>
@@ -71,9 +58,11 @@ const MyHeader= observer(class MyHeader extends React.Component {
           <Right>
           </Right>
         }
+            <Body>
+              <Text>{store.header}</Text>
+            </Body>
           </Header>
-        <MyFooter />
-      </Drawer>
+
 
     );
   }

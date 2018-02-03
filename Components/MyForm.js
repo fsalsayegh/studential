@@ -11,7 +11,9 @@ import { observer } from "mobx-react";
    componentWillMount(){
      store.mainpage = false
      store.headright = false
+     store.header = 'Studential'
    }
+
 
   render() {
 
@@ -35,7 +37,6 @@ import { observer } from "mobx-react";
             </Tab>
           </Tabs>
         </Grid>
-
       </Form>
     );
   }
