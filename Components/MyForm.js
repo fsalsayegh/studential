@@ -12,6 +12,7 @@ import { observer } from "mobx-react";
      store.mainpage = false
      store.headright = false
      store.header = 'Studential'
+     store.leftheader = true
    }
 
 

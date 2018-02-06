@@ -12,6 +12,9 @@ import MyFeed from './Components/MyFeed';
 import MyComment from './Components/Comment.js';
 import MyProfile from './Components/MyProfile.js';
 import MyMessage from './Components/MyMessage.js';
+import MyCreate from './Components/MyCreate.js';
+import MyFavorite from './Components/MyFavorite.js';
+import EditProfile from './Components/EditProfile.js';
 
 export default observer(class App extends React.Component {
   closeDrawer(){
@@ -35,11 +38,13 @@ export default observer(class App extends React.Component {
           <MyHeader openDrawer={this.openDrawer.bind(this)}/>
           <Container>
             <Content>
-              <Route exact path="/" component={MyFeed}/>
-              <Route exact path="/x" component={MyForm}/>
+              {store.check ? <Route exact path="/" component={MyFeed}/> : <Route exact path="/" component={MyForm}/> }
               <Route exact path="/z" component={MyComment}/>
               <Route exact path="/profile" component={MyProfile}/>
               <Route exact path="/message" component={MyMessage}/>
+              <Route exact path="/add" component={MyCreate}/>
+              <Route path ="/myfav" component={MyFavorite}/>
+              <Route path='/EditProfile' component={EditProfile}/>
             </Content>
 
             <Footer>
@@ -52,7 +57,7 @@ export default observer(class App extends React.Component {
                   </Link>
                 </Button>
 
-                  <Button  verticaltransparent>
+                  <Button  vertical transparent>
                     <Link to="/x">
                       <View>
                         <Icon name="apps" />

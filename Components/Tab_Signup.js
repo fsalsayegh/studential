@@ -18,19 +18,8 @@ const MySignup = observer(class MySignup extends React.Component {
            name_user: 'close-circle',
            name_pass:'close-circle',
            email:'',
-           major:[
-             { label: "Computer Engineering", value: "Computer Engineering"},
-             { label: "Electrical Engneering", value: "Electrical Engineering"},
-             { label: "Mechanical Engineering", value: "Mechanical Engineering"},
 
-           ],
-           course:[
-             { value:"Operating System"},
-             { value: "Nano"},
-             { value: "physics"},
 
-           ],
-           selectedFruits: [],
          };
     }
 
@@ -74,19 +63,27 @@ const MySignup = observer(class MySignup extends React.Component {
       }else if (username.length === ""){
         alert("The username is empty")
       }else{
-        auth.signup(username,password,email,major,course)
+        store.check=true
+
       }
     }
+    // auth.signup(username,password,email,major,course)
 
     //when the user selects or de-selects an item
-    onSelectionsChange(selectedFruits){
-    //selectedFruits is array of { label, value }
-    this.setState({selectedFruits})
-    console.log(selectedFruits)
+    onSelectionsChange(selectedItems){
+    //selectedItems is array of { label, value }
+    store.selectedItems = selectedItems
+    console.log(selectedItems)
   }
+
+  selectedItem(item){
+    store.selected = item
+    console.log("selected"+ store.selected)
+    }
 
 
   render() {
+    //let variable= Object.values(store.major)
     return (
       <View>
         <View className='username-input'>
@@ -125,12 +122,12 @@ const MySignup = observer(class MySignup extends React.Component {
 
         <View className='major-input' style={{marginLeft: 20, marginRight: 20}}>
           <Label style={{fontSize: 15,fontWeight: "bold"}} stackedLabel> Major</Label>
-            <Dropdown  label='Major' data={this.state.major}/>
+            <Dropdown  label='Major' data= {store.major} onChangeText={this.selectedItem.bind(this)} />
         </View>
 
         <View className='Course-input' style={{marginLeft: 20, marginRight: 20}}>
           <Label style={{fontSize: 15,fontWeight: "bold"}}> Course</Label>
-          <SelectMultiple items={this.state.major} selectedItems={this.state.selectedFruits} onSelectionsChange={this.onSelectionsChange.bind(this)} />
+          <SelectMultiple items={store.course} selectedItems={store.selectedItems} onSelectionsChange={this.onSelectionsChange.bind(this)} />
         </View>
 
         <View className='Signup-button'>

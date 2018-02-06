@@ -25,15 +25,33 @@ const MyHeader= observer(class MyHeader extends React.Component {
 
   }
 
+  // <Button transparent>
+  //   <Link to='/profile' >
+  //     <Icon name= 'arrow-back'/>
+  //   </Link>
+  // </Button>
+
 
   render() {
     return (
           <Header searchBar rounded>
+            {store.leftheader ?
             <Left>
               <Button transparent onPress={() => this.props.openDrawer()}>
                 <Icon name= 'menu' />
               </Button>
             </Left>
+            :
+            <Left>
+               <Button transparent>
+                 <Link to='/profile' >
+                   <Icon name= 'arrow-back'/>
+                 </Link>
+               </Button>
+            </Left>
+
+          }
+
             {store.mainpage ?
               <Body>
                 <Item>
@@ -49,11 +67,21 @@ const MyHeader= observer(class MyHeader extends React.Component {
              }
 
              {store.headright ?
-          <Right>
-            <Item>
-              <Button transparent onPress={this.filterList.bind(this)}><Text>Search</Text></Button>
-            </Item>
-          </Right>
+
+          // <Right>
+          //   <Item>
+          //     <Button transparent onPress={this.filterList.bind(this)}><Text>Search</Text></Button>
+          //   </Item>
+          // </Right>
+          <Left>
+
+            <Button transparent>
+              <Link to="/add">
+                <Icon name= 'ios-paw'/>
+              </Link>
+            </Button>
+          </Left>
+
           :
           <Right>
           </Right>

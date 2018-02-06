@@ -23,20 +23,52 @@ import {
 //import Icon from 'react-native-vector-icons/FontAwesome';
 import MyComment from './Comment.js';
 import {Link} from 'react-router-native'
+import store from '../Store.js'
+import { observer } from "mobx-react";
+import MyFavorite from './MyFavorite.js';
 
+const MyItem = observer(class MyItem extends React.Component {
+  constructor(){
+    super();
+    this.state ={
+      boolenStar:false,
 
-class MyItem extends React.Component {
+     }
+  }
+
+  active(){
+    let x = this.state.boolenStar;
+
+    if (x === false){
+      this.setState({boolenStar:true})
+    }else{
+      this.setState({boolenStar:false})
+    }
+  }
+
+  // let y = this.props.item
+  // let z ={
+  //   username: y.username
+  //   favorite: y
+  // }
 
  render() {
+
+   if(this.state.boolenStar === true){
+     store.favorite =this.props.item.username
+   }
+
+
    return (
+     <View>
      <Card>
        <CardItem>
          <Left>
            <Thumbnail source={{uri: 'https://static.pexels.com/photos/248159/pexels-photo-248159.jpeg'}} />
            <Body>
              <Text>username: {this.props.item.username}</Text>
-             <Text note>email: {this.props.item.email}</Text>
            </Body>
+           <Text>11h ago</Text>
          </Left>
        </CardItem>
        <CardItem cardBody>
@@ -44,35 +76,36 @@ class MyItem extends React.Component {
        </CardItem>
        <CardItem>
        <Left>
-         <Button transparent>
-           <Icon active name="thumbs-up" />
-           <Text>12 Likes</Text>
+         <Button transparent onPress={this.active.bind(this)}>
+           <Icon active={this.state.boolenStar} name="star" />
+           <Text> favorite</Text>
          </Button>
        </Left>
        <Body>
             <Button transparent>
               <Link to="/z">
-                <Icon active name="chatbubbles" />
+                <Icon  name="chatbubbles" />
               </Link>
               <Text>comments</Text>
             </Button>
 
        </Body>
        <Right>
-         <Text>11h ago</Text>
+         <Button transparent>
+           <Icon name="cart"/>
+           <Text> Add Cart</Text>
+         </Button>
        </Right>
      </CardItem>
    </Card>
-
-
+  </View>
    );
  }
-}
-
+});
 export default MyItem;
 
 
-
+//<Text note>email: {this.props.item.email}</Text>
 
 // constructor(){
 //   super();

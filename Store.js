@@ -15,7 +15,26 @@ class myStore {
       name_icon:'',
       mainpage: false,
       headright: false,
-      header:''
+      header:'',
+      feedlist:[],
+      check:"",
+      leftheader: false,
+      major:[
+        { label: "Computer Engineering", value: "Computer Engineering"},
+        { label: "Electrical Engneering", value: "Electrical Engineering"},
+        { label: "Mechanical Engineering", value: "Mechanical Engineering"},
+      ],
+      selected: "",
+      course:[
+        { label: "Operating System" ,value:"Operating System"},
+        { label: "Nano ", value: "Nano"},
+        { label: "physics " ,value: "physics"},
+      ],
+      selectedItems: [],
+      favorite:""
+
+
+
     })
   }
 }

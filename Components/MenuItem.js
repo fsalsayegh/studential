@@ -33,7 +33,9 @@ class SideBar extends React.Component {
         </Text>
 
         <Button transparent>
-          <Text>myfavorite</Text>
+          <Link to="/myfav" onPress={this.props.closeDrawer()} component={Text}>
+            <Text>myfavorite</Text>
+          </Link>
         </Button>
 
         <Text>

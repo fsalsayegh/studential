@@ -4,6 +4,7 @@ import { Input,Form,List,Body,ListItem,Thumbnail,Container,Content,Header,Footer
 import MyItem from './MyItem';
 import { observer } from "mobx-react";
 import store from '../Store';
+import MyFavorite from './MyFavorite.js';
 
 const MyFeed = observer(class MyFeed extends React.Component {
  // constructor(){
@@ -19,6 +20,7 @@ const MyFeed = observer(class MyFeed extends React.Component {
    store.mainpage = true
    store.headright = true
    store.header = ""
+   store.leftheader = true
    fetch('https://jsonplaceholder.typicode.com/users').then(
      (x) => x.json()
    ).then(
@@ -32,7 +34,8 @@ const MyFeed = observer(class MyFeed extends React.Component {
  render() {
    return (
     <View>
-       <ListView dataSource={store.dataSource} renderRow={(item) => <MyItem item={item}/>} />
+       <ListView dataSource={store.dataSource} renderRow={(item) => <MyItem item={item}/> }/>
+       
   </View>
    );
  }
@@ -81,7 +84,7 @@ export default MyFeed;
 
 
 
-
+//api studential
 // constructor(){
 //   super();
 //   this.state ={

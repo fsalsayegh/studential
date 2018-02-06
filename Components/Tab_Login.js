@@ -33,10 +33,12 @@ const MyLogin = observer (class MyLogin extends React.Component {
       }else if (username.length === ""){
         alert("The username is empty")
       }else {
-        auth.login(username,password)
+        store.check=true
+
       }
     }
-
+    // auth.login(username,password)
+    
     changeMeUser(username){
 
       if(username.length >= 3){
