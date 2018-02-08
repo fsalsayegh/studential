@@ -35,7 +35,7 @@ const MyFeed = observer(class MyFeed extends React.Component {
    return (
     <View>
        <ListView dataSource={store.dataSource} renderRow={(item) => <MyItem item={item}/> }/>
-       
+
   </View>
    );
  }
@@ -64,6 +64,7 @@ export default MyFeed;
 // book: {x.results.book} {" "}
 // feed: {x.results.feed} {" "}
 
+//arrow function
 
 // {/* <List dataArray={items}
 //   renderRow={(item) =>

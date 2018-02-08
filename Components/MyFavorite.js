@@ -31,7 +31,8 @@ const MyFavorite = observer(class MyFavorite extends React.Component {
   constructor(){
     super();
     this.state ={
-      user:{}
+      user:{},
+  
 
 
      }
@@ -42,7 +43,10 @@ const MyFavorite = observer(class MyFavorite extends React.Component {
  render() {
    return (
      <View>
-       <Text>{store.favorite}</Text>
+       <FlatList
+          data={store.favorite}
+          renderItem={({item}) => <Text>{item}</Text>} enableEmptySections
+        />
     </View>
 
 

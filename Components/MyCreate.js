@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList,StyleSheet, Text,Image } from 'react-native';
+import { FlatList,StyleSheet, Text,Image,ListView } from 'react-native';
 import {Label,Card,CardItem,View,Body,Input,Item,Right,Container,Content,Header,Footer,HeaderTab,Left,Button,Icon,Drawer } from 'native-base';
 import {Link,NativeRouter} from 'react-router-native'
 import SideBar from './MenuItem';
@@ -30,18 +30,20 @@ const MyCreate= observer(class MyCreate extends React.Component {
              { label: "physics " ,value: "physics"},
 
            ],
-           selectedFruits: [],
+           selected: [],
            combox:'',
            listcom:[],
-           form:[]
+           dataSource: new ListView.DataSource({
+                  rowHasChanged:(row1, row2) => row1 !==row2
+                }),
          };
        }
 
 
-       onSelectionsChange(selectedFruits){
-       //selectedFruits is array of { label, value }
-       this.setState({selectedFruits})
-       console.log(selectedFruits)
+       onSelectionsChange(selected){
+       //selected is array of { label, value }
+       this.setState({selected})
+       console.log(selected)
        }
 
        textInput(input){
@@ -50,10 +52,10 @@ const MyCreate= observer(class MyCreate extends React.Component {
        }
 
        addcomm(){
-         let inputext = this.state.combox;
+
          let listcom = this.state.listcom;
-         listcom.push(inputext)
-         this.setState({listcom: listcom})
+         listcom.push(this.state.combox)
+         this.setState({listcom: listcom , dataSource: this.state.dataSource.cloneWithRows(listcom)})
          console.log("addcomm func" +this.state.listcom)
 
        }
@@ -62,13 +64,20 @@ const MyCreate= observer(class MyCreate extends React.Component {
            store.headright = false
            store.header = 'Create feed'
            store.leftheader= false
-         }
 
+        }
 
+renderitem(x){
+  return(
+  <Text>
+    {x}
+  </Text>
+)
+}
   render() {
     return (
     <View>
-
+      <Card>
         <View className='major-input' style={{marginLeft: 20, marginRight: 20,marginBottom: 20}}>
          <Label style={{fontSize: 15,fontWeight: "bold", marginTop: 20}} stackedLabel> Major</Label>
          <Dropdown  label='Choose your major' data={this.state.major}/>
@@ -76,10 +85,12 @@ const MyCreate= observer(class MyCreate extends React.Component {
 
        <View className='Course-input' style={{marginLeft: 20, marginRight: 20 ,marginBottom: 20 }}>
          <Label style={{fontSize: 15,fontWeight: "bold"}}> Course</Label>
-         <SelectMultiple items={this.state.course} selectedItems={this.state.selectedFruits} onSelectionsChange={this.onSelectionsChange.bind(this)} />
+         <SelectMultiple items={this.state.course} selectedItems={this.state.selected} onSelectionsChange={this.onSelectionsChange.bind(this)} />
        </View>
 
-       <Label>Upload Image</Label>
+       <View className='Image-upload' style={{marginLeft: 20, marginRight: 20 ,marginBottom: 20 }}>
+         <Label style={{fontSize: 15,fontWeight: "bold"}}> Upload Image</Label>
+      </View>
 
        <Text>
        {" "}
@@ -93,15 +104,16 @@ const MyCreate= observer(class MyCreate extends React.Component {
        {" "}
        </Text>
 
-       <Button color='#ff5c5c' style={{marginLeft: 160}} onPress={this.addcomm.bind(this)}>
-         <Text style={{color: "white", fontFamily: 'Verdana'}}>Submit</Text>
-       </Button>
-
-       <Button color='#ff5c5c' style={{marginLeft: 160}}>
+       <Button color='#ff5c5c' style={{alignSelf: 'center'}} onPress={this.addcomm.bind(this)}>
          <Text style={{color: "white", fontFamily: 'Verdana'}}>Submit form</Text>
        </Button>
-    </View>
 
+       <ListView dataSource={this.state.dataSource} renderRow={this.renderitem } enableEmptySections/>
+       <Text>
+       {" "}
+       </Text>
+   </Card>
+    </View>
 
     );
   }

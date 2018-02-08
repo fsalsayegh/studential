@@ -122,7 +122,7 @@ const MySignup = observer(class MySignup extends React.Component {
 
         <View className='major-input' style={{marginLeft: 20, marginRight: 20}}>
           <Label style={{fontSize: 15,fontWeight: "bold"}} stackedLabel> Major</Label>
-            <Dropdown  label='Major' data= {store.major} onChangeText={this.selectedItem.bind(this)} />
+            <Dropdown  label='Choose your major' data= {store.major} onChangeText={this.selectedItem.bind(this)} />
         </View>
 
         <View className='Course-input' style={{marginLeft: 20, marginRight: 20}}>

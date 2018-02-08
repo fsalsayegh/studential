@@ -31,8 +31,7 @@ class myStore {
         { label: "physics " ,value: "physics"},
       ],
       selectedItems: [],
-      favorite:""
-
+      favorite:[],
 
 
     })

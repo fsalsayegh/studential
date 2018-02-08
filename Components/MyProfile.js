@@ -28,7 +28,9 @@ componentWillMount(){
     store.leftheader = true
   }
 
-  
+  // <Text>   Books   Groups   Following   Followers   </Text>
+  // <Text>      3             2             14               20   </Text>
+
   render() {
 
     return (
@@ -38,8 +40,12 @@ componentWillMount(){
           <CardItem>
               <Thumbnail source={{uri: 'https://www.sonypark360.net/wp-content/uploads/2017/08/profile-pictures.png'}} />
               <Body>
-                <Text>   Books   Groups   Following   Followers   </Text>
-                <Text>      3             2             14               20   </Text>
+                <Button transparent>
+                  <Link to="/Following">
+                    <Text>     Following 3
+                       </Text>
+                    </Link>
+                </Button>
               </Body>
 
           </CardItem>

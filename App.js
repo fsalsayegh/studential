@@ -15,6 +15,7 @@ import MyMessage from './Components/MyMessage.js';
 import MyCreate from './Components/MyCreate.js';
 import MyFavorite from './Components/MyFavorite.js';
 import EditProfile from './Components/EditProfile.js';
+import MyFollowing  from './Components/Following.js';
 
 export default observer(class App extends React.Component {
   closeDrawer(){
@@ -45,6 +46,7 @@ export default observer(class App extends React.Component {
               <Route exact path="/add" component={MyCreate}/>
               <Route path ="/myfav" component={MyFavorite}/>
               <Route path='/EditProfile' component={EditProfile}/>
+              <Route path='/Following' component={MyFollowing}/>
             </Content>
 
             <Footer>

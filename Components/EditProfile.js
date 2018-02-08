@@ -22,7 +22,7 @@ const EditProfile = observer(class EditProfile extends React.Component {
     store.headright = false
     store.header = 'Edit Profile'
     store.leftheader =false
-  
+
   }
 
   //when the user selects or de-selects an item
@@ -63,7 +63,7 @@ selectedItem(item){
 
                   <View className='major-input' style={{marginLeft: 20, marginRight: 20}}>
                     <Label style={{fontSize: 15,fontWeight: "bold"}} stackedLabel> Major</Label>
-                      <Dropdown  label='Major' data= {store.major} onChangeText={this.selectedItem.bind(this)} />
+                      <Dropdown  label='Choose your major' data= {store.major} onChangeText={this.selectedItem.bind(this)} />
                   </View>
 
                   <Text>
