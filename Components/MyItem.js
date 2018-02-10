@@ -64,7 +64,7 @@ const MyItem = observer(class MyItem extends React.Component {
 
    return (
      <View>
-       
+
      <Card>
        <CardItem>
          <Left>
@@ -74,13 +74,21 @@ const MyItem = observer(class MyItem extends React.Component {
              <Text>{ "" }</Text>
 
            </Body>
-           <Text>11h ago</Text>
+           <Button transparent>
+             <Link to="/detail">
+               <Text>detail</Text>
+             </Link>
+           </Button>
          </Left>
        </CardItem>
 
        <CardItem cardBody>
          <Image size={30} source={{uri: 'https://media.wiley.com/product_data/coverImage300/55/11180937/1118093755.jpg'}} style={{height: 200, width: 200, flex: 1 ,resizeMode: "contain"}}/>
 
+       </CardItem>
+
+       <CardItem>
+         <Text style={{fontWeight: 'bold' }}>Caption:  </Text><Text>operating system book</Text>
        </CardItem>
 
        <CardItem>

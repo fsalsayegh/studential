@@ -6,6 +6,7 @@ import { observer } from "mobx-react";
 import { Dropdown } from 'react-native-material-dropdown';
 import MyTest from './Test';
 import {Link,NativeRouter,Route} from 'react-router-native'
+import { Table, TableWrapper, Row, Rows, Col, Cols, Cell } from 'react-native-table-component';
 
 const MyProfile = observer(class MyProfile extends React.Component {
   constructor(){
@@ -39,14 +40,39 @@ componentWillMount(){
         <Card>
           <CardItem>
               <Thumbnail source={{uri: 'https://www.sonypark360.net/wp-content/uploads/2017/08/profile-pictures.png'}} />
-              <Body>
+
+              <View style={{marginLeft: 20}}>
+                  <Button transparent>
+                      <Text> Books {'\n'}
+                              {""} {""}{""} {""}{""} {""}{""} {""}3
+                      </Text>
+                </Button>
+                </View>
+
+                <View>
+                  <Button transparent>
+                    <Text> Groups {'\n'}
+                         {""} {""}{""} {""}{""} {""}{""} {""}{""} {""}2
+                    </Text>
+                  </Button>
+              </View>
+
+              <View >
                 <Button transparent>
                   <Link to="/Following">
-                    <Text>     Following 3
-                       </Text>
-                    </Link>
+                    <Text> Following {'\n'}
+                         {""} {""}{""} {""}{""} {""}{""} {""}{""} {""}{""}{""}{""}3
+                    </Text>
+                  </Link>
                 </Button>
-              </Body>
+            </View>
+            <View>
+              <Button transparent>
+                <Text> Followers {'\n'}
+                   {""} {""}{""} {""}{""} {""}{""} {""}{""} {""}14
+                </Text>
+              </Button>
+          </View>
 
           </CardItem>
           <CardItem cardBody>
@@ -76,7 +102,7 @@ componentWillMount(){
                   <Text>
                     {" "}
                   </Text>
-                <Text> Uni: AUM</Text>
+
               </Body>
             </Left>
           </CardItem>

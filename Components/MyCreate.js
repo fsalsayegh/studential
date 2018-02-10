@@ -3,7 +3,7 @@ import { FlatList,StyleSheet, Text,Image,ListView } from 'react-native';
 import {Label,Card,CardItem,View,Body,Input,Item,Right,Container,Content,Header,Footer,HeaderTab,Left,Button,Icon,Drawer } from 'native-base';
 import {Link,NativeRouter} from 'react-router-native'
 import SideBar from './MenuItem';
-import MyFooter from './MyFooter.js';
+
 import store from '../Store';
 import { observer } from "mobx-react";
 import { Dropdown } from 'react-native-material-dropdown';
@@ -31,11 +31,11 @@ const MyCreate= observer(class MyCreate extends React.Component {
 
            ],
            selected: [],
-           combox:'',
-           listcom:[],
-           dataSource: new ListView.DataSource({
-                  rowHasChanged:(row1, row2) => row1 !==row2
-                }),
+           // dataSource: new ListView.DataSource({
+           //        rowHasChanged:(row1, row2) => row1 !==row2
+           //      }),
+
+            combox: ""
          };
        }
 
@@ -53,10 +53,10 @@ const MyCreate= observer(class MyCreate extends React.Component {
 
        addcomm(){
 
-         let listcom = this.state.listcom;
+         let listcom = store.listcom;
          listcom.push(this.state.combox)
-         this.setState({listcom: listcom , dataSource: this.state.dataSource.cloneWithRows(listcom)})
-         console.log("addcomm func" +this.state.listcom)
+         store.data = store.data.cloneWithRows(listcom)
+         console.log("addcomm func" +store.listcom)
 
        }
        componentWillMount(){
@@ -95,9 +95,9 @@ renderitem(x){
        <Text>
        {" "}
        </Text>
-       <Label stackedLabel style={{fontSize: 15, fontWeight: "bold", marginLeft: 20, marginRight: 20}}> comment box</Label>
+       <Label stackedLabel style={{fontSize: 15, fontWeight: "bold", marginLeft: 20, marginRight: 20}}> caption </Label>
          <Item regular style={{marginLeft: 20, marginRight: 20}}>
-         <Input  style={{fontSize: 12}} placeholder="add a comment.." onChangeText={this.textInput.bind(this)}/>
+         <Input  style={{fontSize: 12}} placeholder="Write a caption.." onChangeText={this.textInput.bind(this)}/>
        </Item>
 
        <Text>
@@ -108,7 +108,7 @@ renderitem(x){
          <Text style={{color: "white", fontFamily: 'Verdana'}}>Submit form</Text>
        </Button>
 
-       <ListView dataSource={this.state.dataSource} renderRow={this.renderitem } enableEmptySections/>
+       <ListView dataSource={store.data} renderRow={this.renderitem} enableEmptySections/>
        <Text>
        {" "}
        </Text>

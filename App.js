@@ -16,6 +16,8 @@ import MyCreate from './Components/MyCreate.js';
 import MyFavorite from './Components/MyFavorite.js';
 import EditProfile from './Components/EditProfile.js';
 import MyFollowing  from './Components/Following.js';
+import MySearch  from './Components/MySearch.js';
+import MyDetail  from './Components/Detail.js';
 
 export default observer(class App extends React.Component {
   closeDrawer(){
@@ -47,6 +49,9 @@ export default observer(class App extends React.Component {
               <Route path ="/myfav" component={MyFavorite}/>
               <Route path='/EditProfile' component={EditProfile}/>
               <Route path='/Following' component={MyFollowing}/>
+              <Route path='/MySearch' component={MySearch}/>
+              <Route path='/detail' component={MyDetail}/>
+
             </Content>
 
             <Footer>
@@ -55,14 +60,16 @@ export default observer(class App extends React.Component {
                   <Link to="/">
                     <View>
                         <Icon name="home" />
+                        <Text  style={{marginLeft: 10}}>Home</Text>
                     </View>
                   </Link>
                 </Button>
 
                   <Button  vertical transparent>
-                    <Link to="/x">
+                    <Link to="/MySearch">
                       <View>
-                        <Icon name="apps" />
+                        <Icon name="search" />
+                        <Text  style={{marginLeft: 10}}>Search</Text>
                       </View>
                     </Link>
                   </Button>
@@ -71,6 +78,7 @@ export default observer(class App extends React.Component {
                     <Link to="/message">
                       <View>
                          <Icon name="chatbubbles" />
+                         <Text  style={{marginLeft: 10}}>Chat</Text>
                        </View>
                      </Link>
                    </Button>

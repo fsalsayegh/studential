@@ -3,7 +3,6 @@ import { StyleSheet, Text } from 'react-native';
 import {View,Body,Input,Item,Right,Container,Content,Header,Footer,HeaderTab,Left,Button,Icon,Drawer } from 'native-base';
 import {Link,NativeRouter} from 'react-router-native'
 import SideBar from './MenuItem';
-import MyFooter from './MyFooter.js';
 import store from '../Store';
 import { observer } from "mobx-react";
 

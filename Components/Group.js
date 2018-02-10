@@ -26,9 +26,9 @@ render() {
   return (
 
     <View >
-      <Button onPress={() => {this.popupDialog.show();}}>
+      <Button color='#ff5c5c' onPress={() => {this.popupDialog.show();}}>
       <View>
-        <Text>Shadow Dialog</Text>
+        <Text style={{color: "white" ,fontFamily: 'Verdana'}}>Add</Text>
         <PopupDialog containerStyle={{zIndex: 10, elevation: 10}} ref={(popupDialog) => { this.popupDialog = popupDialog; }} >
 
             <Text >Shadow Dialog</Text>
