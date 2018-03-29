@@ -35,7 +35,9 @@ const MyCreate= observer(class MyCreate extends React.Component {
            //        rowHasChanged:(row1, row2) => row1 !==row2
            //      }),
 
-            combox: ""
+            combox: "",
+            listcom:[],
+            selected_create: "",
          };
        }
 
@@ -52,11 +54,20 @@ const MyCreate= observer(class MyCreate extends React.Component {
        }
 
        addcomm(){
+         let localDataSource = new ListView.DataSource({
+                rowHasChanged:(row1, row2) => row1 !==row2
+              })
+         let listcom = store.dataSource;
+         listcom.append({
+           major: this.state.selected_create,
+           courses: this.state.selected,
+           caption: this.state.combox,
+         })
+         store.dataSource = localDataSource.cloneWithRows(listcom)
+         // console.log("MAJOR: " + this.state.selected_create)
+         // console.log("COURSE: " + this.state.selected[0].value)
+         // console.log("CAPTION: " + this.state.combox)
 
-         let listcom = store.listcom;
-         listcom.push(this.state.combox)
-         store.data = store.data.cloneWithRows(listcom)
-         console.log("addcomm func" +store.listcom)
 
        }
        componentWillMount(){
@@ -66,6 +77,10 @@ const MyCreate= observer(class MyCreate extends React.Component {
            store.leftheader= false
 
         }
+        selectedItem(item){
+          this.setState({selected_create: item})
+          console.log("selected"+ store.selected_create)
+          }
 
 renderitem(x){
   return(
@@ -80,7 +95,7 @@ renderitem(x){
       <Card>
         <View className='major-input' style={{marginLeft: 20, marginRight: 20,marginBottom: 20}}>
          <Label style={{fontSize: 15,fontWeight: "bold", marginTop: 20}} stackedLabel> Major</Label>
-         <Dropdown  label='Choose your major' data={this.state.major}/>
+         <Dropdown  label='Choose your major' data={this.state.major} onChangeText={this.selectedItem.bind(this)}/>
        </View>
 
        <View className='Course-input' style={{marginLeft: 20, marginRight: 20 ,marginBottom: 20 }}>
@@ -112,7 +127,7 @@ renderitem(x){
        <Text>
        {" "}
        </Text>
-   </Card>
+     </Card>
     </View>
 
     );

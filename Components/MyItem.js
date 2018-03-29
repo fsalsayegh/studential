@@ -20,7 +20,7 @@ import {
   Button,
   Icon
 } from 'native-base';
-//import Icon from 'react-native-vector-icons/FontAwesome';
+
 import MyComment from './Comment.js';
 import {Link} from 'react-router-native'
 import store from '../Store.js'
@@ -64,7 +64,6 @@ const MyItem = observer(class MyItem extends React.Component {
 
    return (
      <View>
-
      <Card>
        <CardItem>
          <Left>
@@ -92,11 +91,11 @@ const MyItem = observer(class MyItem extends React.Component {
        </CardItem>
 
        <CardItem>
-         <Text style={{fontWeight: 'bold' }}>Major:</Text><Text>{store.selected}</Text>
+         <Text style={{fontWeight: 'bold' }}>Major: </Text><Text>{store.selected}</Text>
        </CardItem>
 
        <CardItem>
-         <Text style={{fontWeight: 'bold'}}>Courses:</Text><FlatList data={store.selectedItems} renderItem={({item}) => <Text>{item.label}</Text>} />
+         <Text style={{fontWeight: 'bold'}}>Courses: </Text><FlatList data={store.selectedItems} renderItem={({item}) => <Text>{item.label}</Text>} />
        </CardItem>
 
        <CardItem>
@@ -200,7 +199,7 @@ export default MyItem;
 // book: {x.results.book} {" "}
 // feed: {x.results.feed} {" "}
 
-
+//another way to render a list when using renderRow
 // {/* <List dataArray={items}
 //   renderRow={(item) =>
 //     <ListItem avatar>

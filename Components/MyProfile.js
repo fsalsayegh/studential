@@ -12,12 +12,7 @@ const MyProfile = observer(class MyProfile extends React.Component {
   constructor(){
     super();
     this.state ={
-      // year:[
-      //   { value: "Freshman"},
-      //   { value: "Sophomore"},
-      //   { value: "Junior"},
-      //   { value: "Senior"},
-      // ],
+      
     }
   }
 

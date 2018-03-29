@@ -33,7 +33,7 @@ const MyHeader= observer(class MyHeader extends React.Component {
 
   render() {
     return (
-          <Header searchBar rounded>
+          <Header searchBar >
             {store.leftheader ?
             <Left>
               <Button transparent onPress={() => this.props.openDrawer()}>
@@ -53,9 +53,12 @@ const MyHeader= observer(class MyHeader extends React.Component {
 
             {store.mainpage ?
               <Body>
-                <Item>
+                <Item style={{marginLeft: 60}} >
                    <Icon name="ios-search" />
                    <Input placeholder="Search for.." onChangeText={(text) => {this.setState({newtext:text})} }/>
+
+                     <Button transparent onPress={this.filterList.bind(this)}><Text style={{marginLeft: 40}}>Search</Text></Button>
+
                 </Item>
               </Body>
             :
@@ -66,23 +69,17 @@ const MyHeader= observer(class MyHeader extends React.Component {
              }
 
              {store.headright ?
-
-          // <Right>
-          //   <Item>
-          //     <Button transparent onPress={this.filterList.bind(this)}><Text>Search</Text></Button>
-          //   </Item>
-          // </Right>
-          <Left>
-
+          <Left style={{marginLeft: 100}}>
             <Button transparent>
               <Link to="/add">
-                <Icon name= 'ios-paw'/>
+                <Text style={{marginLeft: 60}}> Create</Text>
               </Link>
             </Button>
           </Left>
 
           :
           <Right>
+
           </Right>
         }
             <Body>
@@ -90,7 +87,11 @@ const MyHeader= observer(class MyHeader extends React.Component {
             </Body>
           </Header>
 
-
+          // {/* <Right>
+          //   <Item>
+          //     <Button transparent onPress={this.filterList.bind(this)}><Text>Search</Text></Button>
+          //   </Item>
+          // </Right> */}
     );
   }
 });

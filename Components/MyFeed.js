@@ -6,6 +6,7 @@ import { observer } from "mobx-react";
 import store from '../Store';
 import MyFavorite from './MyFavorite.js';
 
+
 const MyFeed = observer(class MyFeed extends React.Component {
  // constructor(){
  //   super();
@@ -25,7 +26,8 @@ const MyFeed = observer(class MyFeed extends React.Component {
      (x) => x.json()
    ).then(
      (y) => {
-       store.dataSource = store.dataSource.cloneWithRows(y)
+       store.dataSource = store.dataSource.cloneWithRows(y);
+
 
    })
 }

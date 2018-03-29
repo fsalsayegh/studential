@@ -37,7 +37,7 @@ const auth = observer(new class auth {
   //   })
   // }
   signup(username,password,email,major,course){
-    fetch("http://127.0.0.1:8000/api/register/", {
+    fetch("http://127.0.0.1:8000/home/signup/", {
      method: 'POST',
      headers: {
        'Accept':'application/json',
@@ -52,7 +52,7 @@ const auth = observer(new class auth {
      })}
    ).then(function(res) {
      console.log(username,password,email,major,course)
-     this.getToken(username,password,email,major,course)
+     this.getToken(username,password)
    }.bind(this)).catch((error) => console.log(error)).done();
   }
 

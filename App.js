@@ -18,6 +18,8 @@ import EditProfile from './Components/EditProfile.js';
 import MyFollowing  from './Components/Following.js';
 import MySearch  from './Components/MySearch.js';
 import MyDetail  from './Components/Detail.js';
+import Img from './Components/TestImg.js';
+import Cam from './Components/Camera.js';
 
 export default observer(class App extends React.Component {
   closeDrawer(){
@@ -51,6 +53,8 @@ export default observer(class App extends React.Component {
               <Route path='/Following' component={MyFollowing}/>
               <Route path='/MySearch' component={MySearch}/>
               <Route path='/detail' component={MyDetail}/>
+              <Route path='/person' component={Img}/>
+              <Route path='/eye' component={Cam}/>
 
             </Content>
 
@@ -82,6 +86,22 @@ export default observer(class App extends React.Component {
                        </View>
                      </Link>
                    </Button>
+
+                   <Button  vertical transparent>
+                     <Link to="/person">
+                       <View>
+                          <Icon name="person" />
+                        </View>
+                      </Link>
+                    </Button>
+
+                    <Button  vertical transparent>
+                      <Link to="/eye">
+                        <View>
+                           <Icon name="eye" />
+                         </View>
+                       </Link>
+                     </Button>
 
               </FooterTab>
             </Footer>

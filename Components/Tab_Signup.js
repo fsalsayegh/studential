@@ -1,11 +1,13 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View,ListView } from 'react-native';
 import { Form, Input,Item,Button,Label,Icon,Grid,Tabs,Tab } from 'native-base';
 import { observer } from "mobx-react";
 import auth from '../auth';
 import store from '../Store';
+import MyMajorList from './MyMajorList';
 import { Dropdown } from 'react-native-material-dropdown';
 import SelectMultiple from 'react-native-select-multiple'
+
 
 const MySignup = observer(class MySignup extends React.Component {
   constructor() {
@@ -18,8 +20,8 @@ const MySignup = observer(class MySignup extends React.Component {
            name_user: 'close-circle',
            name_pass:'close-circle',
            email:'',
-
-
+           major:"",
+           course:[],
          };
     }
 
@@ -52,6 +54,9 @@ const MySignup = observer(class MySignup extends React.Component {
     alert_signup(){
       let username = this.state.username;
       let password = this.state.password;
+      let email = this.state.email;
+      let major = this.state.major;
+      let course = this.state.course;
 
       if((password.length < 7) && (username.length < 3)){
         alert("The password and the username are short")
@@ -63,11 +68,13 @@ const MySignup = observer(class MySignup extends React.Component {
       }else if (username.length === ""){
         alert("The username is empty")
       }else{
-        store.check=true
+        //store.check=true
+        auth.signup(username,password,email,major,course)
 
       }
     }
     // auth.signup(username,password,email,major,course)
+
 
     //when the user selects or de-selects an item
     onSelectionsChange(selectedItems){
@@ -76,14 +83,34 @@ const MySignup = observer(class MySignup extends React.Component {
     console.log(selectedItems)
   }
 
-  selectedItem(item){
-    store.selected = item
-    console.log("selected"+ store.selected)
-    }
+  //for the dropdown
+  // selectedItem(item){
+  //   store.selected = item
+  //   console.log("selected"+ store.selected)
+  //   }
 
+
+    componentWillMount(){
+      fetch('http://127.0.0.1:8000/home/majorlist/').then(
+        (x) => x.json()
+      ).then(
+        (y) =>
+        {
+          let f=y.map(res => {
+            console.log(res.name)
+            return(
+             <Text> {res.name} </Text>
+
+            )
+          })
+          store.majorlistdropdown = f
+
+      })
+    }
 
   render() {
     //let variable= Object.values(store.major)
+  //for background color style={{backgroundColor:'#00695c', flex:1}}
     return (
       <View>
         <View className='username-input'>
@@ -122,7 +149,8 @@ const MySignup = observer(class MySignup extends React.Component {
 
         <View className='major-input' style={{marginLeft: 20, marginRight: 20}}>
           <Label style={{fontSize: 15,fontWeight: "bold"}} stackedLabel> Major</Label>
-            <Dropdown  label='Choose your major' data= {store.major} onChangeText={this.selectedItem.bind(this)} />
+          {/* <ListView dataSource={store.majorlist} renderRow={(major) => <MyMajorList major={major}/>} /> */}
+          <MyMajorList major={store.majorlistdropdown}/>
         </View>
 
         <View className='Course-input' style={{marginLeft: 20, marginRight: 20}}>
@@ -140,3 +168,6 @@ const MySignup = observer(class MySignup extends React.Component {
   }
 });
 export default MySignup;
+
+{/* <ListView dataSource={store.major} renderRow={(item) => <MyListMajor item={item}/> } /> */}
+{/* <Dropdown  label='Choose your major' data= {store.major} onChangeText={this.selectedItem.bind(this)} /> */}

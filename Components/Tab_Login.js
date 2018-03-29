@@ -1,6 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { Form, Input,Item,Button,Label,Icon,Grid,Tabs,Tab } from 'native-base';
+import { StyleSheet, Text, View,Image  } from 'react-native';
+import { Thumbnail,Form, Input,Item,Button,Label,Icon,Grid,Tabs,Tab} from 'native-base';
 import auth from '../auth';
 import store from '../Store';
 import { observer } from "mobx-react";
@@ -38,7 +38,7 @@ const MyLogin = observer (class MyLogin extends React.Component {
       }
     }
     // auth.login(username,password)
-    
+
     changeMeUser(username){
 
       if(username.length >= 3){
@@ -64,6 +64,11 @@ const MyLogin = observer (class MyLogin extends React.Component {
 
     }
 
+  componentWillMount(){
+      store.mainpage = false
+      store.headright = false
+      store.leftheader = true
+    }
 
   render() {
     return (
@@ -90,6 +95,10 @@ const MyLogin = observer (class MyLogin extends React.Component {
              <Text style={{color: "white", fontFamily: 'Verdana'}}>Login</Text>
           </Button>
         </View>
+        <Text style ={{marginTop: 100, marginLeft:160, fontWeight: "bold"}}>
+          Studential {'\n'}{'\n'}
+          <Thumbnail source={{uri: '/Users/fatmalsayegh/Desktop/splash.png'}} />
+        </Text>
     </View>
 
     );
@@ -97,3 +106,6 @@ const MyLogin = observer (class MyLogin extends React.Component {
 });
 
 export default MyLogin;
+
+{/* <Image source={{uri: '/Users/fatmalsayegh/Desktop/ff87e203183f06807353568b23080139--wallpapers-iphone--abstract-wallpaper.jpg'}} style={{flex:1 ,alignSelf: 'stretch',width: null, position: 'fixed'}}>
+</Image> */}

@@ -19,11 +19,11 @@ class myStore {
       feedlist:[],
       check:"",
       leftheader: false,
-      major:[
-        { label: "Computer Engineering", value: "Computer Engineering"},
-        { label: "Electrical Engneering", value: "Electrical Engineering"},
-        { label: "Mechanical Engineering", value: "Mechanical Engineering"},
-      ],
+      // major:[
+      //   { label: "Computer Engineering", value: "Computer Engineering"},
+      //   { label: "Electrical Engneering", value: "Electrical Engineering"},
+      //   { label: "Mechanical Engineering", value: "Mechanical Engineering"},
+      // ],
       selected: "",
       course:[
         { label: "Operating System" ,value:"Operating System"},
@@ -32,10 +32,14 @@ class myStore {
       ],
       selectedItems: [],
       favorite:[],
-      listcom:[],
       data: new ListView.DataSource({
              rowHasChanged:(row1, row2) => row1 !==row2
            }),
+      selected_create: "",
+      majorlist: new ListView.DataSource({
+            rowHasChanged:(row1, row2) => row1 !==row2
+          }),
+      majorlistdropdown: [],
 
     })
   }
