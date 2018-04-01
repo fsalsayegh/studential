@@ -13,29 +13,29 @@ import { Dropdown } from 'react-native-material-dropdown';
    constructor(){
      super();
      this.state ={
-       major: []
+       major:[],
      }
    }
 
-   componentDidMount(){
-
-     fetch('http://127.0.0.1:8000/home/majorlist/').then(
-       (x) => x.json()
-     ).then(
-         (y) =>{
-
-           let z=y.map(items => {
-             console.log(items.name)
-             return(
-                <Text>{items.name}</Text>
-             )
-           })
-
-        this.setState({major: z})
-        console.log(z)
-
-     })
-   }
+   // componentDidMount(){
+   //
+   //   fetch('http://127.0.0.1:8000/home/majorlist/').then(
+   //     (x) => x.json()
+   //   ).then(
+   //       (y) =>{
+   //
+   //         let z=y.map(items => {
+   //           console.log(items.value)
+   //           return(
+   //              <Text>{items.value}</Text>
+   //           )
+   //         })
+   //
+   //      this.setState({major: z})
+   //      console.log(z)
+   //
+   //   })
+   // }
 
    selectedItem(item){
      store.selected = item
@@ -43,15 +43,28 @@ import { Dropdown } from 'react-native-material-dropdown';
      }
 
 render() {
+let list = []
+    fetch('http://127.0.0.1:8000/home/majorlist/').then(
+      (x) => x.json()
+    ).then(
+        (y) =>{
+       for(i=0; i< y.length; i++){
+         list.push({value: y[i].name})
+       }
+    })
 
   return(
     <View>
-      <Dropdown label='Choose your major' data={this.state.major} onChangeText={this.selectedItem.bind(this)}/>
+      <Dropdown label='Choose your major' data={list} onChangeText={this.selectedItem.bind(this)}/>
     </View>
 
   )}
 })
 export default Cam;
+
+
+
+
 
 {/* <ListView dataSource={this.state.dataSource} renderRow={(item) =>
     <View>
