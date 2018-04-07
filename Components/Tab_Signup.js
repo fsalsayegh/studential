@@ -76,48 +76,6 @@ const MySignup = observer(class MySignup extends React.Component {
     }
     // auth.signup(username,password,email,major,course)
 
-
-  //   //when the user selects or de-selects an item
-  //   onSelectionsChange(selectedItems){
-  //   //selectedItems is array of { label, value }
-  //   store.selectedItems = selectedItems
-  //   console.log(selectedItems)
-  // }
-
-  //for the dropdown
-  // selectedItem(item){
-  //   store.selected = item
-  //   console.log("selected"+ store.selected)
-  //   }
-
-
-    componentWillMount(){
-      let list =[];
-          fetch('http://127.0.0.1:8000/home/majorlist/').then(
-            (x) => x.json()
-          ).then(
-              (y) =>{
-             for(i=0; i< y.length; i++){
-               list.push({value: y[i].name})
-             }
-          })
-          store.majorlistdropdown = list
-       }
-
-
-       // componentWillMount(){
-       //   let list = store.majorlistmultiple;
-       //       fetch('http://127.0.0.1:8000/home/courselist/').then(
-       //         (x) => x.json()
-       //       ).then(
-       //           (y) =>{
-       //          for(i=0; i< y.length; i++){
-       //            list.push({value: y[i].name})
-       //          }
-       //       })
-       //       store.majorlistmultiple = list
-       //    }
-
   render() {
     //let variable= Object.values(store.major)
   //for background color style={{backgroundColor:'#00695c', flex:1}}
@@ -159,12 +117,12 @@ const MySignup = observer(class MySignup extends React.Component {
 
         <View className='major-input' style={{marginLeft: 20, marginRight: 20}}>
           <Label style={{fontSize: 15,fontWeight: "bold"}} stackedLabel> Major</Label>
-          <MyMajorList major={store.majorlistdropdown}/>
+          <MyMajorList />
         </View>
 
         <View className='Course-input' style={{marginLeft: 20, marginRight: 20}}>
           <Label style={{fontSize: 15,fontWeight: "bold"}}> Course</Label>
-          <MyCourseList course={store.majorlistmultiple}/>
+          <MyCourseList />
         </View>
 
         <View className='Signup-button'>

@@ -8,6 +8,25 @@ import SelectMultiple from 'react-native-select-multiple'
  const MyCourseList = observer(class MyCourseList extends React.Component {
 
 
+   componentWillMount(){
+     fetch('http://127.0.0.1:8000/api/courselist/').then(
+       (x) => x.json()
+     ).then(
+         (y) =>{
+           store.majorlistmultiple=y.map( x =>{
+             return {
+               value: x.name,
+               label: x.name
+             }
+           }
+           )
+
+        console.log(y)
+     })
+     .catch(err => console.error(err));
+  }
+
+
    //when the user selects or de-selects an item
    onSelectionsChange(selectedItems){
    //selectedItems is array of { label, value }
@@ -18,7 +37,7 @@ import SelectMultiple from 'react-native-select-multiple'
 render() {
   return(
     <View>
-      <SelectMultiple items={this.props.course} selectedItems={store.selectedItems} onSelectionsChange={this.onSelectionsChange.bind(this)} />
+      <SelectMultiple items={store.majorlistmultiple} selectedItems={store.selectedItems} onSelectionsChange={this.onSelectionsChange.bind(this)} />
     </View>
 
   )

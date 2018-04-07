@@ -18,35 +18,28 @@ import SelectMultiple from 'react-native-select-multiple'
    }
 
    componentDidMount(){
-
-         fetch('http://127.0.0.1:8000/home/courselist/').then(
+     let list =[];
+         fetch('http://127.0.0.1:8000/api/majorlist/').then(
            (x) => x.json()
          ).then(
              (y) =>{
-               store.majorlistmultiple=y.map( x =>{
-                 return {
-                   value: x.name,
-                   label: x.name
-                 }
-               }
-               )
-
-            console.log(y)
+            for(i=0; i< y.length; i++){
+              list.push({value: y[i].name})
+            }
+            store.majorlistdropdown = list
          })
-         .catch(err => console.error(err));
+
       }
 
 
-      //when the user selects or de-selects an item
-      onSelectionsChange(selectedItems){
-      //selectedItems is array of { label, value }
-      store.selectedItems = selectedItems
-      console.log(selectedItems)
-      }
+      selectedItem(item){
+        store.selected = item
+        console.log("selected"+ store.selected)
+        }
 
-render() {
+render(){
 // let list = [];
-//     fetch('http://127.0.0.1:8000/home/majorlist/').then(
+//     fetch('http://127.0.0.1:8000/api/majorlist/').then(
 //       (x) => x.json()
 //     ).then(
 //         (y) =>{
@@ -56,7 +49,7 @@ render() {
 //     })
   return(
     <View>
-      <SelectMultiple items={store.majorlistmultiple} selectedItems={store.selectedItems} onSelectionsChange={this.onSelectionsChange.bind(this)} />
+      <Dropdown label='Choose your major' data={store.majorlistdropdown} onChangeText={this.selectedItem.bind(this)}/>
     </View>
 
   )}

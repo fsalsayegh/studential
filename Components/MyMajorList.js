@@ -7,6 +7,20 @@ import { Dropdown } from 'react-native-material-dropdown';
 
  const MyMajorList = observer(class MyMajorList extends React.Component {
 
+   componentWillMount(){
+     let list =[];
+         fetch('http://127.0.0.1:8000/api/majorlist/').then(
+           (x) => x.json()
+         ).then(
+             (y) =>{
+            for(i=0; i< y.length; i++){
+              list.push({value: y[i].name})
+            }
+            store.majorlistdropdown = list
+         })
+
+      }
+
    selectedItem(item){
      store.selected = item
      console.log("selected"+ store.selected)
@@ -16,7 +30,7 @@ import { Dropdown } from 'react-native-material-dropdown';
 render() {
   return(
     <View>
-      <Dropdown label='Choose your major' data={this.props.major} onChangeText={this.selectedItem.bind(this)}/>
+      <Dropdown label='Choose your major' data={store.majorlistdropdown} onChangeText={this.selectedItem.bind(this)}/>
     </View>
 
   )
