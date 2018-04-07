@@ -7,55 +7,56 @@ import MySignup from './Tab_Signup.js';
 import store from '../Store';
 import { observer } from "mobx-react";
 import { Dropdown } from 'react-native-material-dropdown';
+import SelectMultiple from 'react-native-select-multiple'
 
  const Cam = observer(class Cam extends React.Component {
 
    constructor(){
      super();
      this.state ={
-       major:[],
      }
    }
 
-   // componentDidMount(){
-   //
-   //   fetch('http://127.0.0.1:8000/home/majorlist/').then(
-   //     (x) => x.json()
-   //   ).then(
-   //       (y) =>{
-   //
-   //         let z=y.map(items => {
-   //           console.log(items.value)
-   //           return(
-   //              <Text>{items.value}</Text>
-   //           )
-   //         })
-   //
-   //      this.setState({major: z})
-   //      console.log(z)
-   //
-   //   })
-   // }
+   componentDidMount(){
 
-   selectedItem(item){
-     store.selected = item
-     console.log("selected"+ store.selected)
-     }
+         fetch('http://127.0.0.1:8000/home/courselist/').then(
+           (x) => x.json()
+         ).then(
+             (y) =>{
+               store.majorlistmultiple=y.map( x =>{
+                 return {
+                   value: x.name,
+                   label: x.name
+                 }
+               }
+               )
+
+            console.log(y)
+         })
+         .catch(err => console.error(err));
+      }
+
+
+      //when the user selects or de-selects an item
+      onSelectionsChange(selectedItems){
+      //selectedItems is array of { label, value }
+      store.selectedItems = selectedItems
+      console.log(selectedItems)
+      }
 
 render() {
-let list = []
-    fetch('http://127.0.0.1:8000/home/majorlist/').then(
-      (x) => x.json()
-    ).then(
-        (y) =>{
-       for(i=0; i< y.length; i++){
-         list.push({value: y[i].name})
-       }
-    })
-
+// let list = [];
+//     fetch('http://127.0.0.1:8000/home/majorlist/').then(
+//       (x) => x.json()
+//     ).then(
+//         (y) =>{
+//        for(i=0; i< y.length; i++){
+//          list.push({value: y[i].name})
+//        }
+//     })
   return(
     <View>
-      <Dropdown label='Choose your major' data={list} onChangeText={this.selectedItem.bind(this)}/>
+      <SelectMultiple items={store.majorlistmultiple} selectedItems={store.selectedItems} onSelectionsChange={this.onSelectionsChange.bind(this)} />
     </View>
 
   )}

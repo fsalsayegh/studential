@@ -5,6 +5,7 @@ import { observer } from "mobx-react";
 import auth from '../auth';
 import store from '../Store';
 import MyMajorList from './MyMajorList';
+import MyCourseList from './MyCourseList';
 import { Dropdown } from 'react-native-material-dropdown';
 import SelectMultiple from 'react-native-select-multiple'
 
@@ -76,12 +77,12 @@ const MySignup = observer(class MySignup extends React.Component {
     // auth.signup(username,password,email,major,course)
 
 
-    //when the user selects or de-selects an item
-    onSelectionsChange(selectedItems){
-    //selectedItems is array of { label, value }
-    store.selectedItems = selectedItems
-    console.log(selectedItems)
-  }
+  //   //when the user selects or de-selects an item
+  //   onSelectionsChange(selectedItems){
+  //   //selectedItems is array of { label, value }
+  //   store.selectedItems = selectedItems
+  //   console.log(selectedItems)
+  // }
 
   //for the dropdown
   // selectedItem(item){
@@ -91,22 +92,31 @@ const MySignup = observer(class MySignup extends React.Component {
 
 
     componentWillMount(){
-      fetch('http://127.0.0.1:8000/home/majorlist/').then(
-        (x) => x.json()
-      ).then(
-        (y) =>
-        {
-          let f=y.map(res => {
-            console.log(res.name)
-            return(
-             <Text> {res.name} </Text>
-
-            )
+      let list =[];
+          fetch('http://127.0.0.1:8000/home/majorlist/').then(
+            (x) => x.json()
+          ).then(
+              (y) =>{
+             for(i=0; i< y.length; i++){
+               list.push({value: y[i].name})
+             }
           })
-          store.majorlistdropdown = f
+          store.majorlistdropdown = list
+       }
 
-      })
-    }
+
+       // componentWillMount(){
+       //   let list = store.majorlistmultiple;
+       //       fetch('http://127.0.0.1:8000/home/courselist/').then(
+       //         (x) => x.json()
+       //       ).then(
+       //           (y) =>{
+       //          for(i=0; i< y.length; i++){
+       //            list.push({value: y[i].name})
+       //          }
+       //       })
+       //       store.majorlistmultiple = list
+       //    }
 
   render() {
     //let variable= Object.values(store.major)
@@ -149,13 +159,12 @@ const MySignup = observer(class MySignup extends React.Component {
 
         <View className='major-input' style={{marginLeft: 20, marginRight: 20}}>
           <Label style={{fontSize: 15,fontWeight: "bold"}} stackedLabel> Major</Label>
-          {/* <ListView dataSource={store.majorlist} renderRow={(major) => <MyMajorList major={major}/>} /> */}
           <MyMajorList major={store.majorlistdropdown}/>
         </View>
 
         <View className='Course-input' style={{marginLeft: 20, marginRight: 20}}>
           <Label style={{fontSize: 15,fontWeight: "bold"}}> Course</Label>
-          <SelectMultiple items={store.course} selectedItems={store.selectedItems} onSelectionsChange={this.onSelectionsChange.bind(this)} />
+          <MyCourseList course={store.majorlistmultiple}/>
         </View>
 
         <View className='Signup-button'>

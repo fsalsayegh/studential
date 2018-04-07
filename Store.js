@@ -25,21 +25,19 @@ class myStore {
       //   { label: "Mechanical Engineering", value: "Mechanical Engineering"},
       // ],
       selected: "",
-      course:[
-        { label: "Operating System" ,value:"Operating System"},
-        { label: "Nano ", value: "Nano"},
-        { label: "physics " ,value: "physics"},
-      ],
-      selectedItems: [],
+      // course:[
+      //   { label: "Operating System" ,value:"Operating System"},
+      //   { label: "Nano ", value: "Nano"},
+      //   { label: "physics " ,value: "physics"},
+      // ],
       favorite:[],
       data: new ListView.DataSource({
              rowHasChanged:(row1, row2) => row1 !==row2
            }),
       selected_create: "",
-      majorlist: new ListView.DataSource({
-            rowHasChanged:(row1, row2) => row1 !==row2
-          }),
       majorlistdropdown: [],
+      majorlistmultiple: [],
+      selectedItems: [],
 
     })
   }
