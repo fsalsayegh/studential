@@ -37,7 +37,7 @@ const auth = observer(new class auth {
   //   })
   // }
   signup(username,password,email,major,course){
-    fetch("http://127.0.0.1:8000/home/signup/", {
+    fetch("http://127.0.0.1:8000/api/signup/", {
      method: 'POST',
      headers: {
        'Accept':'application/json',
@@ -48,16 +48,20 @@ const auth = observer(new class auth {
        "password": password,
        'email': email,
        'major': major,
-       'course': course
+       'course': course,
      })}
    ).then(function(res) {
-     console.log(username,password,email,major,course)
+     //console.log(username,password,email,major,course)
+     // console.log(course);
+     console.log(res);
      this.getToken(username,password)
+     console.log(res.username)
    }.bind(this)).catch((error) => console.log(error)).done();
+
   }
 
   getToken(username,password){
-     fetch("http://127.0.0.1:8000/api/login/", {
+     fetch("http://127.0.0.1:8000/api/signin/", {
       method: 'POST',
       headers: {
         'Accept':'application/json',
@@ -68,17 +72,18 @@ const auth = observer(new class auth {
         "password": password,
       })}
     ).then((res) =>{
-    if (res.status == '200') { return res.json()}
-    else { alert('something wronge happend')}
+     return res.json()
+    //else { alert('something wronge happend')}
   })
     .then((res) => {
-      store.authenticated = true
-      store.token = res.token
-      store.username = res.username
-      AsyncStorage.setItem('token', res.token);
-      AsyncStorage.setItem('username', res.username);
+      // store.authenticated = true
+      // store.token = res.token
+      // store.username = res.username
+      // AsyncStorage.setItem('token', res.token);
+      // AsyncStorage.setItem('username', res.username);
+      console.log(username,password);
       console.log(res)
-      alert(res.username)
+      //alert(res.username)
 
     }).catch((error) => console.log(error)).done();
   }

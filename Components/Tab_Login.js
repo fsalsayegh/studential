@@ -23,6 +23,7 @@ const MyLogin = observer (class MyLogin extends React.Component {
       let username = this.state.username;
       let password = this.state.password;
 
+
       if((password.length < 7) && (username.length < 3)){
         alert("The password and the username are short")
       }
@@ -33,7 +34,8 @@ const MyLogin = observer (class MyLogin extends React.Component {
       }else if (username.length === ""){
         alert("The username is empty")
       }else {
-        store.check=true
+        // store.check=true
+        auth.login(username,password)
 
       }
     }
@@ -76,7 +78,7 @@ const MyLogin = observer (class MyLogin extends React.Component {
         <View className='username-input'>
           <Label stackedLabel style={{fontSize: 15, fontWeight: "bold", marginLeft: 20, marginRight: 20}}> Username</Label>
           <Item success={this.state.inputSuccess ? true : false}  regular style={{marginLeft: 20, marginRight: 20}}>
-            <Input  style={{fontSize: 12}} value={this.state.username} placeholder="Please enter your username" onChangeText={this.changeMeUser.bind(this)} />
+            <Input  autoCapitalize='none' style={{fontSize: 12}} value={this.state.username} placeholder="Please enter your username" onChangeText={this.changeMeUser.bind(this)} />
             <Icon name={this.state.name_user}/>
           </Item>
         </View>

@@ -15,7 +15,7 @@ import SelectMultiple from 'react-native-select-multiple'
          (y) =>{
            store.majorlistmultiple=y.map( x =>{
              return {
-               value: x.name,
+               value: x.id,
                label: x.name
              }
            }

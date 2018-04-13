@@ -21,8 +21,7 @@ const MySignup = observer(class MySignup extends React.Component {
            name_user: 'close-circle',
            name_pass:'close-circle',
            email:'',
-           major:"",
-           course:[],
+
          };
     }
 
@@ -56,8 +55,8 @@ const MySignup = observer(class MySignup extends React.Component {
       let username = this.state.username;
       let password = this.state.password;
       let email = this.state.email;
-      let major = this.state.major;
-      let course = this.state.course;
+      let major = store.selected;
+      let course = store.selectedItems;
 
       if((password.length < 7) && (username.length < 3)){
         alert("The password and the username are short")
@@ -70,7 +69,13 @@ const MySignup = observer(class MySignup extends React.Component {
         alert("The username is empty")
       }else{
         //store.check=true
-        auth.signup(username,password,email,major,course)
+        let mycourses;
+        mycourses = course.map(
+          (x) => { return x.value }
+        )
+
+
+        auth.signup(username,password,email,major,mycourses)
 
       }
     }
@@ -84,7 +89,7 @@ const MySignup = observer(class MySignup extends React.Component {
         <View className='username-input'>
           <Label stackedLabel style={{fontSize: 15, fontWeight: "bold", marginLeft: 20, marginRight: 20}}> Username</Label>
           <Item success={this.state.inputSuccess ? true : false}  regular style={{marginLeft: 20, marginRight: 20}}>
-            <Input  style={{fontSize: 12}} value={this.state.username} placeholder="Please enter your username" onChangeText={this.changeMeUser.bind(this)} />
+            <Input  autoCapitalize='none' style={{fontSize: 12}} value={this.state.username} placeholder="Please enter your username" onChangeText={this.changeMeUser.bind(this)} />
             <Icon name={this.state.name_user}/>
           </Item>
         </View>
@@ -95,7 +100,7 @@ const MySignup = observer(class MySignup extends React.Component {
         <View className='Email-input'>
         <Label stackedLabel style={{fontSize: 15, fontWeight: 'bold', marginLeft: 20, marginRight: 20}}>Email</Label>
         <Item  regular style={{marginLeft: 20, marginRight: 20}}>
-          <Input  style={{fontSize: 12}}  placeholder='Please enter your email' onChangeText={(email)=> this.setState({email: email}) } />
+          <Input  autoCapitalize='none' style={{fontSize: 12}}  placeholder='Please enter your email' onChangeText={(email)=> this.setState({email: email}) } />
         </Item>
       </View>
 

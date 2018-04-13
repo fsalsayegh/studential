@@ -28,9 +28,7 @@ import SelectMultiple from 'react-native-select-multiple'
             }
             store.majorlistdropdown = list
          })
-
       }
-
 
       selectedItem(item){
         store.selected = item

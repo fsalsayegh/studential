@@ -14,7 +14,7 @@ import { Dropdown } from 'react-native-material-dropdown';
          ).then(
              (y) =>{
             for(i=0; i< y.length; i++){
-              list.push({value: y[i].name})
+              list.push({value: y[i].id })
             }
             store.majorlistdropdown = list
          })
