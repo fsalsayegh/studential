@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View,Image  } from 'react-native';
 import { Thumbnail,Form, Input,Item,Button,Label,Icon,Grid,Tabs,Tab} from 'native-base';
-import auth from '../auth';
-import store from '../Store';
+import auth from '../../auth';
+import store from '../../Store';
 import { observer } from "mobx-react";
 
 const MyLogin = observer (class MyLogin extends React.Component {
@@ -34,15 +34,13 @@ const MyLogin = observer (class MyLogin extends React.Component {
       }else if (username.length === ""){
         alert("The username is empty")
       }else {
-        // store.check=true
+        store.check=true
         auth.login(username,password)
 
       }
     }
-    // auth.login(username,password)
 
     changeMeUser(username){
-
       if(username.length >= 3){
         this.setState({inputSuccess: true})
         this.setState({name_user: 'ios-checkmark-circle'})
@@ -54,7 +52,6 @@ const MyLogin = observer (class MyLogin extends React.Component {
     }
 
     changeMePass(password){
-
       if(password.length < 7){
         this.setState({inputSuccess2: false})
         this.setState({name_pass: 'close-circle'})
@@ -63,14 +60,13 @@ const MyLogin = observer (class MyLogin extends React.Component {
         this.setState({name_pass: 'ios-checkmark-circle'})
       }
       this.setState({password: password}) //used as ref to take the value
-
     }
 
-  componentWillMount(){
-      store.mainpage = false
-      store.headright = false
-      store.leftheader = true
-    }
+    componentWillMount(){
+        store.mainpage = false
+        store.headright = false
+        store.leftheader = true
+      }
 
   render() {
     return (
@@ -81,11 +77,7 @@ const MyLogin = observer (class MyLogin extends React.Component {
             <Input  autoCapitalize='none' style={{fontSize: 12}} value={this.state.username} placeholder="Please enter your username" onChangeText={this.changeMeUser.bind(this)} />
             <Icon name={this.state.name_user}/>
           </Item>
-        </View>
-
-        <Text>
-          {" "}
-        </Text>
+        </View><Text>{" "}</Text>
 
         <View className='password-input'>
           <Label stackedLabel style={{fontSize: 15,fontWeight: "bold", marginLeft: 20, marginRight: 20}}> Password</Label>
@@ -102,7 +94,6 @@ const MyLogin = observer (class MyLogin extends React.Component {
           <Thumbnail source={{uri: '/Users/fatmalsayegh/Desktop/splash.png'}} />
         </Text>
     </View>
-
     );
   }
 });

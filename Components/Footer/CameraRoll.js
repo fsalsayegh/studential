@@ -2,9 +2,9 @@ import React from 'react';
 import {TouchableOpacity,CameraRoll,ScrollView,StyleSheet, Text, View, Image } from 'react-native';
 import {Thumbnail,Button, Form, Input,Item, Left,Label,Icon,Header,Right,Grid,Col,Tabs,Tab} from 'native-base';
 import { Camera, Permissions,ImagePicker} from 'expo';
-import MyLogin from './Tab_Login.js';
-import MySignup from './Tab_Signup.js';
-import store from '../Store';
+import MyLogin from '../Registration_Forms/Tab_Login.js';
+import MySignup from '../Registration_Forms/Tab_Signup.js';
+import store from '../../Store';
 import { observer } from "mobx-react";
 
  const Img = observer(class Img extends React.Component {

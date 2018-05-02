@@ -1,7 +1,7 @@
 import React from 'react';
 import { ListView,StyleSheet, Text, View } from 'react-native';
 import { Right,Input,Content,Header,Footer,HeaderTab,Left,Button,Icon, Tab, Tabs,Grid ,Form} from 'native-base';
-import store from '../Store.js'
+import store from '../../../Store.js'
 import { observer } from "mobx-react";
 import PopupDialog from 'react-native-popup-dialog';
 
@@ -22,7 +22,6 @@ componentWillMount(){
 
 render() {
   return (
-
     <View>
       <Button onPress={() => {this.popupDialog.show()}} >
           <Text style={{color: "white" ,fontFamily: 'Verdana'}}>Add</Text>

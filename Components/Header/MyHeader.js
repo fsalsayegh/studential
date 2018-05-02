@@ -2,8 +2,8 @@ import React from 'react';
 import { StyleSheet, Text } from 'react-native';
 import {View,Body,Input,Item,Right,Container,Content,Header,Footer,HeaderTab,Left,Button,Icon,Drawer } from 'native-base';
 import {Link,NativeRouter} from 'react-router-native'
-import SideBar from './MenuItem';
-import store from '../Store';
+import SideBar from '../Drawer/MenuItem';
+import store from '../../Store';
 import { observer } from "mobx-react";
 
 
@@ -23,70 +23,57 @@ const MyHeader= observer(class MyHeader extends React.Component {
       console.log(this.state.url+this.state.newtext)
 
   }
-
   // <Button transparent>
   //   <Link to='/profile' >
   //     <Icon name= 'arrow-back'/>
   //   </Link>
   // </Button>
-
-
   render() {
     return (
-          <Header searchBar >
-            {store.leftheader ?
-            <Left>
-              <Button transparent onPress={() => this.props.openDrawer()}>
-                <Icon name= 'menu' />
-              </Button>
-            </Left>
-            :
-            <Left>
-               <Button transparent>
-                 <Link to='/profile' >
-                   <Icon name= 'arrow-back'/>
-                 </Link>
-               </Button>
-            </Left>
-
-          }
-
-            {store.mainpage ?
-              <Body>
-                <Item style={{marginLeft: 60}} >
-                   <Icon name="ios-search" />
-                   <Input placeholder="Search for.." onChangeText={(text) => {this.setState({newtext:text})} }/>
-
-                     <Button transparent onPress={this.filterList.bind(this)}><Text style={{marginLeft: 40}}>Search</Text></Button>
-
-                </Item>
-              </Body>
-            :
-
-            <Body>
-          </Body>
-
-             }
-
-             {store.headright ?
-          <Left style={{marginLeft: 100}}>
+      <Header searchBar >
+        {store.leftheader ?
+          <Left>
+            <Button transparent onPress={() => this.props.openDrawer()}>
+              <Icon name= 'menu'/>
+            </Button>
+          </Left>
+              :
+          <Left>
             <Button transparent>
-              <Link to="/add">
-                <Text style={{marginLeft: 60}}> Create</Text>
+              <Link to='/profile' >
+                <Icon name= 'arrow-back'/>
               </Link>
             </Button>
           </Left>
-
-          :
-          <Right>
-
-          </Right>
-        }
+            }
+        {store.mainpage ?
+          <Body>
+            <Item style={{marginLeft: 60}} >
+              <Icon name="ios-search"/>
+              <Input placeholder="Search for.." onChangeText={(text) => {this.setState({newtext:text})} }/>
+              <Button transparent onPress={this.filterList.bind(this)}><Text style={{marginLeft: 40}}>Search</Text></Button>
+            </Item>
+          </Body>
+            :
+          <Body>
+          </Body>
+            }
+        {store.headright ?
+            <Left>
+              <Button transparent>
+                <Link to="/add">
+                  <Text style={{marginLeft: 50}}> Create</Text>
+                </Link>
+              </Button>
+            </Left>
+            :
+            <Right>
+            </Right>
+          }
             <Body>
               <Text>{store.header}</Text>
             </Body>
-          </Header>
-
+        </Header>
           // {/* <Right>
           //   <Item>
           //     <Button transparent onPress={this.filterList.bind(this)}><Text>Search</Text></Button>
@@ -95,8 +82,6 @@ const MyHeader= observer(class MyHeader extends React.Component {
     );
   }
 });
-
-
 export default MyHeader;
 
 

@@ -1,25 +1,25 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import MyForm from './Components/MyForm.js';
+import MyForm from './Components/Registration_Forms/MyForm.js';
 import { Container,Content,Header,Footer, Drawer,FooterTab,Button,Icon } from 'native-base';
-import SideBar from './Components/MenuItem';
-import MyHeader from './Components/MyHeader.js';
+import SideBar from './Components/Drawer/MenuItem';
+import MyHeader from './Components/Header/MyHeader.js';
 import { observer } from "mobx-react";
 import auth from './auth';
 import store from './Store';
 import {Link,NativeRouter,Route} from 'react-router-native'
-import MyFeed from './Components/MyFeed';
-import MyComment from './Components/Comment.js';
-import MyProfile from './Components/MyProfile.js';
-import MyMessage from './Components/MyMessage.js';
-import MyCreate from './Components/MyCreate.js';
-import MyFavorite from './Components/MyFavorite.js';
-import EditProfile from './Components/EditProfile.js';
-import MyFollowing  from './Components/Following.js';
-import MySearch  from './Components/MySearch.js';
-import MyDetail  from './Components/Detail.js';
-import Img from './Components/TestImg.js';
-import Cam from './Components/Camera.js';
+import MyFeed from './Components/Feed/MyFeed';
+import MyComment from './Components/Feed/Comment.js';
+import MyProfile from './Components/Profile/MyProfile.js';
+import MyMessage from './Components/Footer/Chat/MyMessage.js';
+import MyCreate from './Components/Header/MyCreate.js';
+import MyFavorite from './Components/Feed/MyFavorite.js';
+import EditProfile from './Components/Profile/EditProfile.js';
+import MyFollowing  from './Components/Profile/Following.js';
+import MySearch  from './Components/Header/MySearch.js';
+import MyDetail  from './Components/Feed/Detail.js';
+import Img from './Components/Footer/CameraRoll.js';
+import Cam from './Components/Footer/Camera.js';
 
 export default observer(class App extends React.Component {
   closeDrawer(){
@@ -54,7 +54,7 @@ export default observer(class App extends React.Component {
               <Route path='/MySearch' component={MySearch}/>
               <Route path='/detail' component={MyDetail}/>
               <Route path='/person' component={Img}/>
-              <Route path='/eye' component={Cam}/>
+              {/* <Route path='/eye' component={Cam}/> */}
 
             </Content>
 
@@ -122,3 +122,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+// {store.check ? <Route exact path="/" component={MyFeed}/> : <Route exact path="/" component={MyForm}/> }

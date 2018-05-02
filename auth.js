@@ -72,15 +72,17 @@ const auth = observer(new class auth {
         "password": password,
       })}
     ).then((res) =>{
-     return res.json()
-    //else { alert('something wronge happend')}
+      if (res.status == '200' ||res.status == '201' ){
+         return res.json()
+      }
+    else { alert('something wronge happend')}
   })
     .then((res) => {
-      // store.authenticated = true
-      // store.token = res.token
-      // store.username = res.username
-      // AsyncStorage.setItem('token', res.token);
-      // AsyncStorage.setItem('username', res.username);
+      store.authenticated = true
+      store.token = res.token
+      store.username = res.username
+      AsyncStorage.setItem('token', res.token);
+      AsyncStorage.setItem('username', res.username);
       console.log(username,password);
       console.log(res)
       //alert(res.username)

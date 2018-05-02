@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Input,CardItem,Card,Container,Content,Header,Footer,Button, Icon, FooterTab, Left,Right } from 'native-base';
 import { NativeRouter,Route , Link } from 'react-router-native'
-import store from '../Store';
+import store from '../../Store';
 
 import { observer } from "mobx-react";
 
@@ -31,7 +31,6 @@ const MySearch= observer(class MySearch extends React.Component {
     }
   render() {
     return (
-
       <View>
         <Card>
           <CardItem>
@@ -39,7 +38,6 @@ const MySearch= observer(class MySearch extends React.Component {
             <Input placeholder="Search for.." onChangeText={(text) => {this.setState({newtext:text})} }/>
           </CardItem>
         </Card>
-
       </View>
     );
   }

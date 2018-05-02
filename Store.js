@@ -36,7 +36,7 @@ class myStore {
            }),
       selected_create: "",
       majorlistdropdown: [],
-      majorlistmultiple: [],
+      courselistmultiple: [],
       selectedItems: [],
 
     })

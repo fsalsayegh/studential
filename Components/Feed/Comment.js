@@ -1,7 +1,7 @@
 import React from 'react';
 import { ListView,StyleSheet, Text, View } from 'react-native';
 import { Right,Input,Container,Content,Header,Footer,HeaderTab,Left,Button,Icon } from 'native-base';
-import store from '../Store.js'
+import store from '../../Store.js'
 import { observer } from "mobx-react";
 
 const MyComment = observer(class MyComment extends React.Component {
@@ -23,9 +23,9 @@ const MyComment = observer(class MyComment extends React.Component {
   }
 
   renderItem(x){
-   return(
-       <Text note>{x}</Text>
-   )
+    return(
+      <Text note>{x}</Text>
+    )
   }
 
   componentWillMount(){
@@ -37,15 +37,15 @@ const MyComment = observer(class MyComment extends React.Component {
 
   render() {
     return (
-          <View>
-            <Input placeholder="add a comment" value={this.state.name_user} onChangeText={(nickname) => this.setState({name_user: nickname})}/>
-            <Button onPress={this.submit.bind(this)}>
-              <Text>comment</Text>
-            </Button>
-            <Right>
-                 <ListView dataSource={this.state.dataSource} renderRow={this.renderItem} />
-            </Right>
-          </View>
+      <View>
+        <Input placeholder="add a comment" value={this.state.name_user} onChangeText={(nickname) => this.setState({name_user: nickname})}/>
+        <Button onPress={this.submit.bind(this)}>
+          <Text>comment</Text>
+        </Button>
+        <Right>
+          <ListView dataSource={this.state.dataSource} renderRow={this.renderItem} />
+        </Right>
+      </View>
     );
   }
 });

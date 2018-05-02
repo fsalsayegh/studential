@@ -13,7 +13,7 @@ import SelectMultiple from 'react-native-select-multiple'
        (x) => x.json()
      ).then(
          (y) =>{
-           store.majorlistmultiple=y.map( x =>{
+           store.courselistmultiple=y.map( x =>{
              return {
                value: x.id,
                label: x.name
@@ -37,7 +37,7 @@ import SelectMultiple from 'react-native-select-multiple'
 render() {
   return(
     <View>
-      <SelectMultiple items={store.majorlistmultiple} selectedItems={store.selectedItems} onSelectionsChange={this.onSelectionsChange.bind(this)} />
+      <SelectMultiple items={store.courselistmultiple} selectedItems={store.selectedItems} onSelectionsChange={this.onSelectionsChange.bind(this)} />
     </View>
 
   )

@@ -3,20 +3,11 @@ import { StyleSheet, Text, View ,ListView, Image} from 'react-native';
 import { Input,Form,List,Body,ListItem,Thumbnail,Container,Content,Header,Footer,HeaderTab,Left,Right,Button,Icon } from 'native-base';
 import MyItem from './MyItem';
 import { observer } from "mobx-react";
-import store from '../Store';
+import store from '../../Store';
 import MyFavorite from './MyFavorite.js';
 
 
 const MyFeed = observer(class MyFeed extends React.Component {
- // constructor(){
- //   super();
- //   this.state ={
- //     dataSource: new ListView.DataSource({
- //       rowHasChanged:(row1, row2) => row1 !==row2
- //     }),
- //   }
- // }
-
  componentWillMount(){
    store.mainpage = true
    store.headright = true
@@ -27,8 +18,6 @@ const MyFeed = observer(class MyFeed extends React.Component {
    ).then(
      (y) => {
        store.dataSource = store.dataSource.cloneWithRows(y);
-
-
    })
 }
 
@@ -37,8 +26,7 @@ const MyFeed = observer(class MyFeed extends React.Component {
    return (
     <View>
        <ListView dataSource={store.dataSource} renderRow={(item) => <MyItem item={item}/> }/>
-
-  </View>
+    </View>
    );
  }
 });

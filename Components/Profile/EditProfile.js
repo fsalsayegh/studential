@@ -1,10 +1,10 @@
 import React from 'react';
 import { FlatList,Picker,StyleSheet, Text, View } from 'react-native';
 import { Label,Image,CardItem,Card,Input,Form,List,Body,ListItem,Thumbnail,Container,Content,Header,Footer,HeaderTab,Left,Right,Button,Icon } from 'native-base';
-import store from '../Store.js'
+import store from '../../Store.js'
 import { observer } from "mobx-react";
 import { Dropdown } from 'react-native-material-dropdown';
-import MyTest from './Test';
+// import MyTest from './Test';
 import SelectMultiple from 'react-native-select-multiple'
 import {Link,NativeRouter,Route} from 'react-router-native'
 
@@ -28,22 +28,18 @@ const EditProfile = observer(class EditProfile extends React.Component {
   //when the user selects or de-selects an item
   onSelectionsChange(selectedItems){
   //selectedItems is array of { label, value }
-  store.selectedItems=selectedItems
-  console.log(selectedItems)
+    store.selectedItems=selectedItems
+    console.log(selectedItems)
 }
 
-selectedItem(item){
-  store.selected = item
-  console.log("selected"+ store.selected)
-  }
-
-
+  selectedItem(item){
+    store.selected = item
+    console.log("selected"+ store.selected)
+    }
 
   render() {
-
     return (
       <View>
-
         <Card>
           <CardItem>
             <Body style={{marginLeft: 150}}>
@@ -56,33 +52,19 @@ selectedItem(item){
           <CardItem>
             <Left>
               <Body>
-                <Text style={{textAlign: "center",fontWeight: "bold"}}>Biography</Text>
-                  <Text>
-                    {" "}
-                  </Text>
+                <Text style={{textAlign: "center",fontWeight: "bold"}}>Biography</Text><Text>{" "}</Text>
 
                   <View className='major-input' style={{marginLeft: 20, marginRight: 20}}>
                     <Label style={{fontSize: 15,fontWeight: "bold"}} stackedLabel> Major</Label>
-                      <Dropdown  label='Choose your major' data= {store.major} onChangeText={this.selectedItem.bind(this)} />
-                  </View>
-
-                  <Text>
-                    {" "}
-                  </Text>
+                    <Dropdown  label='Choose your major' data= {store.major} onChangeText={this.selectedItem.bind(this)} />
+                  </View><Text>{" "}</Text>
 
                   <View className='Course-input' style={{marginLeft: 20, marginRight: 20}}>
                     <Label style={{fontSize: 15,fontWeight: "bold"}}> Course</Label>
                     <SelectMultiple items={store.course} selectedItems={store.selectedItems} onSelectionsChange={this.onSelectionsChange.bind(this)} />
-                  </View>
-
-                  <Text>
-                    {" "}
-                  </Text>
+                  </View><Text>{" "}</Text>
               </Body>
             </Left>
-          </CardItem>
-          <CardItem cardBody>
-
           </CardItem>
         </Card>
           <Body>
@@ -92,11 +74,11 @@ selectedItem(item){
               </Link>
             </Button>
           </Body>
-
-        </View>
+      </View>
     );
   }
 });
-
-
 export default EditProfile;
+
+{/* <CardItem cardBody>
+</CardItem> */}

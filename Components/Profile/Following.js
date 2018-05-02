@@ -1,12 +1,13 @@
 import React from 'react';
 import { FlatList,Picker,StyleSheet, Text, View } from 'react-native';
 import { iconRight,Image,CardItem,Card,Input,Form,List,Body,ListItem,Thumbnail,Container,Content,Header,Footer,HeaderTab,Left,Right,Button,Icon } from 'native-base';
-import store from '../Store.js'
+import store from '../../Store.js'
+import MyFollowingList from './FollowingList.js';
 import { observer } from "mobx-react";
 import { Dropdown } from 'react-native-material-dropdown';
-import MyTest from './Test';
+// import MyTest from './Test';
 import {Link,NativeRouter,Route} from 'react-router-native'
-import MyFollowingList from './FollowingList.js';
+
 
 const MyFollowing = observer(class MyFollowing extends React.Component {
   constructor(){

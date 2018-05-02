@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 import { Form, Input,Item,Button , Left,Label,Icon,Header,Right,Grid,Col,Tabs,Tab } from 'native-base';
 import MyLogin from './Tab_Login.js';
 import MySignup from './Tab_Signup.js';
-import store from '../Store';
+import store from '../../Store.js';
 import { observer } from "mobx-react";
 
  const MyForm= observer(class MyForm extends React.Component {
@@ -19,21 +19,14 @@ import { observer } from "mobx-react";
   render() {
 
     return (
-
       <Form>
         <Grid hasTabs>
           <Tabs initialPage={0}>
-            <Tab  heading="Login">
-              <Text>
-                {" "}
-              </Text>
+            <Tab  heading="Login"><Text>{" "}</Text>
               <MyLogin />
             </Tab>
 
-            <Tab  heading="Signup">
-              <Text>
-                {" "}
-              </Text>
+            <Tab  heading="Signup"><Text>{" "}</Text>
               <MySignup />
             </Tab>
           </Tabs>

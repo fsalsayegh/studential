@@ -1,32 +1,14 @@
 import React from 'react';
 import { StyleSheet, Text, View ,ListView, Image,FlatList} from 'react-native';
-import {
-  Drawer,
-  Card,
-  CardItem,
-  Input,
-  Form,
-  List,
-  Body,
-  ListItem,
-  Thumbnail,
-  Container,
-  Content,
-  Header,
-  Footer,
-  HeaderTab,
-  Left,
-  Right,
-  Button,
-  Icon
+import {Drawer,Card,CardItem,Input,Form,List,Body,ListItem,Thumbnail,Container,Content,Header,Footer,HeaderTab,Left,Right,Button,Icon
 } from 'native-base';
 
 import MyComment from './Comment.js';
 import {Link} from 'react-router-native'
-import store from '../Store.js'
+import store from '../../Store.js'
 import { observer } from "mobx-react";
 import MyFavorite from './MyFavorite.js';
-import MyCreate from './MyCreate.js';
+import MyCreate from '../Header/MyCreate.js';
 
 const MyItem = observer(class MyItem extends React.Component {
   constructor(){
@@ -56,73 +38,69 @@ const MyItem = observer(class MyItem extends React.Component {
  render() {
 
    if(this.state.boolenStar === true){
-
-
      store.favorite.push(this.props.item.username)
    }
 
-
    return (
      <View>
-     <Card>
-       <CardItem>
-         <Left>
-           <Thumbnail source={{uri: 'https://static.pexels.com/photos/248159/pexels-photo-248159.jpeg'}} />
+       <Card>
+         <CardItem>
+           <Left>
+             <Thumbnail source={{uri: 'https://static.pexels.com/photos/248159/pexels-photo-248159.jpeg'}} />
+             <Body>
+               <Text style={{fontWeight: 'bold'}}>username: {this.props.item.username}</Text>
+               <Text>{ "" }</Text>
+             </Body>
+             <Button transparent>
+               <Link to="/detail">
+                  <Text>detail</Text>
+               </Link>
+             </Button>
+           </Left>
+         </CardItem>
+
+         <CardItem cardBody>
+           <Image size={30} source={{uri: 'https://media.wiley.com/product_data/coverImage300/55/11180937/1118093755.jpg'}} style={{height: 200, width: 200, flex: 1 ,resizeMode: "contain"}}/>
+         </CardItem>
+
+         <CardItem>
+           <Text style={{fontWeight: 'bold' }}>Caption:  </Text><Text>operating system book</Text>
+         </CardItem>
+
+         <CardItem>
+           <Text style={{fontWeight: 'bold' }}>Major: </Text><Text>{store.selected}</Text>
+         </CardItem>
+
+         <CardItem>
+           <Text style={{fontWeight: 'bold'}}>Courses: </Text><FlatList data={store.selectedItems} renderItem={({item}) => <Text>{item.label}</Text>} />
+         </CardItem>
+
+         <CardItem>
+           <Left>
+             <Button transparent onPress={this.active.bind(this)}>
+               <Icon active={this.state.boolenStar} name="star" />
+               <Text> favorite</Text>
+             </Button>
+           </Left>
+
            <Body>
-             <Text style={{fontWeight: 'bold'}}>username: {this.props.item.username}</Text>
-             <Text>{ "" }</Text>
-
+             <Button transparent>
+               <Link to="/z">
+                  <Icon  name="chatbubbles" />
+               </Link>
+               <Text>comments</Text>
+             </Button>
            </Body>
-           <Button transparent>
-             <Link to="/detail">
-               <Text>detail</Text>
-             </Link>
-           </Button>
-         </Left>
-       </CardItem>
 
-       <CardItem cardBody>
-         <Image size={30} source={{uri: 'https://media.wiley.com/product_data/coverImage300/55/11180937/1118093755.jpg'}} style={{height: 200, width: 200, flex: 1 ,resizeMode: "contain"}}/>
-
-       </CardItem>
-
-       <CardItem>
-         <Text style={{fontWeight: 'bold' }}>Caption:  </Text><Text>operating system book</Text>
-       </CardItem>
-
-       <CardItem>
-         <Text style={{fontWeight: 'bold' }}>Major: </Text><Text>{store.selected}</Text>
-       </CardItem>
-
-       <CardItem>
-         <Text style={{fontWeight: 'bold'}}>Courses: </Text><FlatList data={store.selectedItems} renderItem={({item}) => <Text>{item.label}</Text>} />
-       </CardItem>
-
-       <CardItem>
-       <Left>
-         <Button transparent onPress={this.active.bind(this)}>
-           <Icon active={this.state.boolenStar} name="star" />
-           <Text> favorite</Text>
-         </Button>
-       </Left>
-       <Body>
-            <Button transparent>
-              <Link to="/z">
-                <Icon  name="chatbubbles" />
-              </Link>
-              <Text>comments</Text>
-            </Button>
-
-       </Body>
-       <Right>
-         <Button transparent>
-           <Icon name="cart"/>
-           <Text> Add Cart</Text>
-         </Button>
-       </Right>
-     </CardItem>
-   </Card>
-  </View>
+           <Right>
+             <Button transparent>
+               <Icon name="cart"/>
+               <Text> Add Cart</Text>
+             </Button>
+           </Right>
+         </CardItem>
+       </Card>
+     </View>
    );
  }
 });
